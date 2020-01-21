@@ -9,9 +9,14 @@ const Home = () => {
 
   const handleSearchSubmit = event => {
     event.preventDefault()
-    fetch(`https://markerapi.com/api/v2/trademarks/trademark/${encodeURI(searchPhrase)}/status/all/start/1/username/merman/password/7xRdLjM2Bh`)
+    fetch(`/trademark/${encodeURI(searchPhrase)}/`)
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((searchResults) => {
+        console.log(searchResults);
+        if (searchResults.trademarks) {
+          setTrademarks(searchResults.trademarks)
+        }
+      })
       .catch((err) => console.error(err));
   };
 
