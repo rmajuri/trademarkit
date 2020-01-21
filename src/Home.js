@@ -5,6 +5,7 @@ import ResultsTable from './results-table/results-table'
 
 const Home = () => {
   const [trademarks, setTrademarks] = useState([]);
+  const [resultsCount, setResultsCount] = useState(0);
   const [searchPhrase, setSearchPhrase] = useState('');
 
   const handleSearchSubmit = event => {
@@ -18,6 +19,9 @@ const Home = () => {
           console.log(searchResults.trademarks)
           setTrademarks(searchResults.trademarks)
         }
+        if (searchResults.count > 0) {
+          setResultsCount(searchResults.count)
+        }
       })
       .catch((err) => console.error(err));
   };
@@ -28,9 +32,12 @@ const Home = () => {
         <h1>trademarkit</h1>
       </header>
       <Search
-      searchPhrase={searchPhrase}
-      setSearchPhrase={setSearchPhrase}
-      handleSearchSubmit={handleSearchSubmit} />
+        searchPhrase={searchPhrase}
+        setSearchPhrase={setSearchPhrase}
+        handleSearchSubmit={handleSearchSubmit} />
+        { resultsCount ? (
+          <h4>{resultsCount}{' '}results</h4>
+        ) : null}
       <ResultsTable trademarks={trademarks} />
     </div>
   );
