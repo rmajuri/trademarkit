@@ -29,7 +29,7 @@ const Home = () => {
   return (
     <div className="Home">
       <header className="Home-header">
-        <h1>trademarkit</h1>
+        <h1>trademarket</h1>
       </header>
       <Search
         searchPhrase={searchPhrase}
