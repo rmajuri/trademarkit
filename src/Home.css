@@ -9,10 +9,13 @@
 
 /* Home styles */
 
+.Home {
+  text-align: center;
+}
+
 .Home-header {
   background-color: var(--orange);
   padding: 20px;
-  text-align: center;
 }
 
 /* Header styles */

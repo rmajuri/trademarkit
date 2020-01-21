@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './results-table.module.css'
+import { startCase } from 'lodash'
 //Import the necessary Material UI components via tree shaking for better peformance
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper} from '@material-ui/core'
 
@@ -28,7 +29,7 @@ const ResultsTable = ({ trademarks }) => {
                             </TableCell>
                             <TableCell>{tm.description}</TableCell>
                             <TableCell>{tm.owner}</TableCell>
-                            <TableCell>{tm.city}</TableCell>
+                            <TableCell>{startCase(tm.city.toLowerCase())}</TableCell>
                             <TableCell>{tm.state}</TableCell>
                             <TableCell>{tm.status}</TableCell>
                         </TableRow>

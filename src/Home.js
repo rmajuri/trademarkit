@@ -12,8 +12,10 @@ const Home = () => {
     fetch(`/trademark/${encodeURI(searchPhrase)}/`)
       .then((res) => res.json())
       .then((searchResults) => {
-        console.log(searchResults);
-        if (searchResults.trademarks) {
+        //A response with no results yields a string in the trademarks field that says "no results".
+        //Therefore, instead of merely checking for null, it's safe to also check if the value is also an array.
+        if (searchResults.trademarks && Array.isArray(searchResults.trademarks)) {
+          console.log(searchResults.trademarks)
           setTrademarks(searchResults.trademarks)
         }
       })
