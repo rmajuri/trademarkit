@@ -1,37 +1,24 @@
-.Home {
+/* Variables */
+:root {
+  --orange: #FF851b;
+  --teal: #39CCCC;
+  --black: #111;
+  --font: arial, sans-serif;
+}
+
+
+/* Home styles */
+
+.Home-header {
+  background-color: var(--orange);
+  padding: 20px;
   text-align: center;
 }
 
-.Home-logo {
-  animation: Home-logo-spin infinite 20s linear;
-  height: 80px;
-}
+/* Header styles */
 
-.Home-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+.Home-header h1 {
+  font-family: var(--font);
   color: white;
-}
-
-.Home-intro {
-  font-size: large;
-}
-
-.Home-resources {
-  list-style: none;
-}
-
-.Home-resources > li {
-  display: inline-block;
-  padding: 1rem;
-}
-
-@keyframes Home-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  letter-spacing: 0.1em;
 }
