@@ -12,6 +12,6 @@ const Search = () => (
                 placeholder="Enter a brand name idea to see relevant trademark information" />
         </form>
     </div>
-)
+);
 
-export default Search
+export default Search;

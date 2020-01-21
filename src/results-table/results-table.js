@@ -39,7 +39,7 @@ const ResultsTable = ({ trademarks }) => {
                 </TableBody>
             </Table>
         </TableContainer>
-    : null)
-}
+    : null);
+};
 
-export default ResultsTable
+export default ResultsTable;
