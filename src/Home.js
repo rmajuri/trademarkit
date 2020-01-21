@@ -1,5 +1,6 @@
 import React from 'react';
 import './Home.css';
+import Search from './search/search'
 
 class Home extends React.Component {
   render() {
@@ -8,6 +9,7 @@ class Home extends React.Component {
         <header className="Home-header">
           <h1>trademarkit</h1>
         </header>
+        <Search />
       </div>
     );
   }
