@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.8.3",
+    "axios": "^0.19.1",
     "express": "4.17.1",
     "razzle": "3.0.0",
     "react": "16.12.0",
