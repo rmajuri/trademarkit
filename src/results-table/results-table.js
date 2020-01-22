@@ -1,11 +1,26 @@
-import React from 'react'
-import styles from './results-table.module.css'
-import { startCase } from 'lodash'
+import React, { useState } from 'react';
+import styles from './results-table.module.css';
+import { startCase } from 'lodash';
 //Import the necessary Material UI components via tree shaking for better peformance
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper} from '@material-ui/core'
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination, TableFooter} from '@material-ui/core';
+
 
 const ResultsTable = ({ trademarks }) => {
-    return ( trademarks && trademarks.length ?
+    //Always start pagination at page 0
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerpage] = useState(5);
+
+    //Calculation to use to fill the appropriate amount of space if the row count falls short of the minimum
+    const emptyRowFiller = rowsPerPage - Math.min(rowsPerPage, trademarks.length - page * rowsPerPage);
+
+    const handleChangePage = (event, newPage) => setPage(newPage);
+
+    const handleChangeRowsPerPage = event => {
+        setRowsPerpage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
+
+    return (
         <div className={styles.Container}>
         {/* Use the drop-shadow "Paper" Material UI component as the table's container */}
         <TableContainer component={Paper}>
@@ -20,8 +35,11 @@ const ResultsTable = ({ trademarks }) => {
                         <TableCell align="center">Status</TableCell>
                     </TableRow>
                 </TableHead>
+                {/* Only render out the table body if there are results */}
+                ( trademarks && trademarks.length ?
                 <TableBody>
-                    {trademarks.map(tm => (
+                    {/* Render out data for only the number of results the user has specified */}
+                    {(rowsPerPage > 0 ? trademarks.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : trademarks).map(tm => (
                         //use the serial number of the trademarks as the component keys since they're unique for each element
                         <TableRow key={tm.serialnumber}>
                             <TableCell component="th" scope="row">
@@ -35,11 +53,36 @@ const ResultsTable = ({ trademarks }) => {
                         </TableRow>
                     ))
                     }
+                    {/* Render out filler rows if we need them */}
+                    {emptyRowFiller > 0 ? (
+                        <TableRow style={{height: 53 * emptyRowFiller}}>
+                            <TableCell colSpan={6} />
+                        </TableRow>
+                    ) : null}
                 </TableBody>
+                <TableFooter>
+                    <TableRow>
+                        <TablePagination
+                            rowsPerPageOptions={[5, 10, 20, {label: 'All', value: -1}]}
+                            colSpan={3}
+                            count={trademarks.length}
+                            rowsPerpage={rowsPerPage}
+                            page={page}
+                            //Use the browser's native component for the select component for mobile compatibility
+                            SelectProps={{
+                                inputProps: {'aria-label': 'rows per page' },
+                                native: true
+                            }}
+                            onChangepage={handleChangePage}
+                            onChangeRowsPerPage={handleChangeRowsPerPage}
+                            ActionsComponent={TablePaginationActions}
+                        />
+                    </TableRow>
+                </TableFooter>
+                : null)
             </Table>
         </TableContainer>
-        </div>
-    : null);
+        </div>);
 };
 
 export default ResultsTable;
