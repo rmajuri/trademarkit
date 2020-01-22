@@ -15,6 +15,7 @@ const Search = ({ searchPhrase, setSearchPhrase, handleSearchSubmit}) => (
                 onChange={event => setSearchPhrase(event.target.value)}
                 //Bind the search phrase state to the search input
                 value={searchPhrase}
+                required
                 />
         </form>
     </div>

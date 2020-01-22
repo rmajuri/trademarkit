@@ -1,0 +1,12 @@
+.PlaceHolderEmptyResults {
+    font-family: var(--font);
+    font-size: 2rem;
+    margin-top: 2em;
+}
+
+.PlaceholderTM {
+    font-size: 8em;
+    color: #eee;
+    margin-top: 5rem;
+}
+
