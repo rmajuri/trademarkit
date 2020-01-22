@@ -17,10 +17,10 @@ const Home = () => {
         //Therefore, instead of merely checking for null, it's safe to also check if the value is also an array.
         if (searchResults.trademarks && Array.isArray(searchResults.trademarks)) {
           console.log(searchResults.trademarks)
-          setTrademarks(searchResults.trademarks)
-        }
-        if (searchResults.count > 0) {
-          setResultsCount(searchResults.count)
+          setTrademarks(searchResults.trademarks);
+          //Even though the response data contains a "counts" property, the array of trademark data
+          //more likely to be correct, since it is calculated
+          setResultsCount(searchResults.trademarks.length);
         }
       })
       .catch((err) => console.error(err));

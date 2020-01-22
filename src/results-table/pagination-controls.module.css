@@ -1,0 +1,5 @@
+.Container {
+    display: flex;
+    flex-shrink: 0;
+    text-align: center;
+}

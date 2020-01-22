@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './results-table.module.css';
 import { startCase } from 'lodash';
+import PaginationControls from './pagination-controls'
 //Import the necessary Material UI components via tree shaking for better peformance
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination, TableFooter} from '@material-ui/core';
 
@@ -20,7 +21,7 @@ const ResultsTable = ({ trademarks }) => {
         setPage(0);
     };
 
-    return (
+    return (trademarks && trademarks.length ? (
         <div className={styles.Container}>
         {/* Use the drop-shadow "Paper" Material UI component as the table's container */}
         <TableContainer component={Paper}>
@@ -35,8 +36,6 @@ const ResultsTable = ({ trademarks }) => {
                         <TableCell align="center">Status</TableCell>
                     </TableRow>
                 </TableHead>
-                {/* Only render out the table body if there are results */}
-                ( trademarks && trademarks.length ?
                 <TableBody>
                     {/* Render out data for only the number of results the user has specified */}
                     {(rowsPerPage > 0 ? trademarks.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : trademarks).map(tm => (
@@ -66,23 +65,22 @@ const ResultsTable = ({ trademarks }) => {
                             rowsPerPageOptions={[5, 10, 20, {label: 'All', value: -1}]}
                             colSpan={3}
                             count={trademarks.length}
-                            rowsPerpage={rowsPerPage}
+                            rowsPerPage={rowsPerPage}
                             page={page}
                             //Use the browser's native component for the select component for mobile compatibility
                             SelectProps={{
                                 inputProps: {'aria-label': 'rows per page' },
                                 native: true
                             }}
-                            onChangepage={handleChangePage}
+                            onChangePage={handleChangePage}
                             onChangeRowsPerPage={handleChangeRowsPerPage}
-                            ActionsComponent={TablePaginationActions}
+                            ActionsComponent={PaginationControls}
                         />
                     </TableRow>
                 </TableFooter>
-                : null)
             </Table>
         </TableContainer>
-        </div>);
+        </div>) : null);
 };
 
 export default ResultsTable;
