@@ -7,13 +7,13 @@ import { FirstPage, KeyboardArrowLeft, KeyboardArrowRight, LastPage } from '@mat
 const PaginationControls = props => {
     const { count, page, rowsPerPage, onChangePage } = props;
 
-    const handleFirstPageButtonClick = event => onChangePage(event, 0);
+    const handleFirstPageButtonClick = () => onChangePage(0);
 
-    const handleBackButtonClick = event => onChangePage(event, page - 1);
+    const handleBackButtonClick = () => onChangePage(page - 1);
 
-    const handleNextButtonClick = event => onChangePage(event, page + 1);
+    const handleNextButtonClick = () => onChangePage(page + 1);
 
-    const handleLastPageButtonClick = event => onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+    const handleLastPageButtonClick = () => onChangePage(Math.max(0, Math.ceil(count / rowsPerPage) - 1));
 
     return (
         <div className={styles.Container}>

@@ -14,7 +14,7 @@ const ResultsTable = ({ trademarks }) => {
     //Calculation to use to fill the appropriate amount of space if the row count falls short of the minimum
     const emptyRowFiller = rowsPerPage - Math.min(rowsPerPage, trademarks.length - page * rowsPerPage);
 
-    const handleChangePage = (event, newPage) => setPage(newPage);
+    const handleChangePage = newPage => setPage(newPage);
 
     const handleChangeRowsPerPage = event => {
         setRowsPerpage(parseInt(event.target.value, 10));
