@@ -53,6 +53,7 @@ const Home = () => {
         { resultsCount ? (
           <h4>{resultsCount}{' '}results</h4>
         ) : null}
+        {/* If there's no search data to render, show the user a placholder message */}
         {trademarks.length ? (
           <ResultsTable trademarks={trademarks} />
           ) : (<Placeholder areResultsEmpty={areResultsEmpty} />)
