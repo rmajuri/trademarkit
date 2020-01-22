@@ -3,7 +3,6 @@ import { IconButton } from '@material-ui/core';
 import styles from './pagination-controls.module.css'
 import { FirstPage, KeyboardArrowLeft, KeyboardArrowRight, LastPage } from '@material-ui/icons';
 
-
 const PaginationControls = props => {
     const { count, page, rowsPerPage, onChangePage } = props;
 

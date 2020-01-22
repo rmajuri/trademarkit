@@ -60,10 +60,10 @@ const ResultsTable = ({ trademarks }) => {
                     ) : null}
                 </TableBody>
                 <TableFooter>
-                    <TableRow>
+                    <TableRow >
                         <TablePagination
                             rowsPerPageOptions={[5, 10, 20, {label: 'All', value: -1}]}
-                            colSpan={3}
+                            colSpan={6}
                             count={trademarks.length}
                             rowsPerPage={rowsPerPage}
                             page={page}
