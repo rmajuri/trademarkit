@@ -29,6 +29,7 @@ const ResultsTable = ({ trademarks }) => {
             <Table aria-label="Trademark search results table">
                 <TableHead>
                     <TableRow>
+                        {/* Explain the somewhat obscure term "wordmark" on hover */}
                         <Tooltip title="&quot;...a distinct text-only typographic treatment of the name of a company, institution, or product name used for purposes of identification and branding...&quot; -Wikipedia" placement="top">
                             <TableCell>
                                     Wordmark
