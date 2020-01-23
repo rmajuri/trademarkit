@@ -13,3 +13,8 @@
     align-items: center;
     width: 100%;
 }
+
+.FormButton {
+    margin-top: .5em;
+    align-self: flex-end;
+}
