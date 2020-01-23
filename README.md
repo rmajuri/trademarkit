@@ -22,7 +22,7 @@ The API I used to fetch the data for this app is https://markerapi.com/.
 
 To the use this API, I had to register an API username and receive an API password, which I needed to include in the URL path I used to make requests to the endpoint.
 
-When I tried to fetch the data from the client side, I was prevented by the CORS policy. To get around this, I added a server module called `/trademark`. This way, any request to the trademarkit site appended with `/trademark` is routed to the endpoint in that file. The endpoint located there makes a request to `https://markerapi.com/api/v2/trademarks/trademark/[searchterm]/status/all/start/[integer]/username/[apiusername]/password/[apipassword]` and returns the results as a JSON object.
+When I tried to fetch the data from the client side, I was prevented by the CORS policy. To get around this, I added a server module called `/trademark`. This way, any request to the trademarkit&#8482; site appended with `/trademark` is routed to the endpoint in that file. The endpoint located there makes a request to `https://markerapi.com/api/v2/trademarks/trademark/[searchterm]/status/all/start/[integer]/username/[apiusername]/password/[apipassword]` and returns the results as a JSON object.
 
 ## Language and Framework Choices
 
@@ -30,8 +30,7 @@ Since the client side framework I'm most proficient in is React, I chose to use 
 
 ### Razzle project starter
 
-I also chose to ues the project starter named [Razzle](https://github.com/jaredpalmer/razzle) by [Jared Palmer](https://github.com/jaredpalmer) (a dev whose work I follow), which I've never used before.
-The reason I chose Razzle is that it through its CLI, you can a bootstrap a server-rendered project that is otherwise unopinionated regarding framework and architecture. Since I've never built a server-rendered app but have been curious about doing so, and since the guide lines for the challenge explained that the URBN team uses SSR, I decided to use this starter in order to learn more about implementing SSR.
+I also chose to ues the project starter named [Razzle](https://github.com/jaredpalmer/razzle) by [Jared Palmer](https://github.com/jaredpalmer) (a dev whose work I follow), which I've never used before. The reason I chose Razzle is that it through its CLI, you can a bootstrap a server-rendered project that is otherwise unopinionated regarding framework and architecture. Since I've never built a server-rendered app but have been curious about doing so, and since the guide lines for the challenge explained that the URBN team uses SSR, I decided to use this starter in order to learn more about implementing SSR.
 
 ### Material-UI
 
@@ -51,11 +50,13 @@ I plan to add tests for my components using [Jest](https://jestjs.io/) but have 
 
 ### Accessibility
 
-I try my best to be cognizant of accessibility standards, first by writing semantic HTML. I also keep a bookmarked browser folder containing accessibility guides and refer to it while I'm developing. Even so, I like to go comb project thoroughly after reaching a checkpoint in order to ensure that I've made my components as accessible as I can make them.
+I try my best to be cognizant of accessibility standards, first by writing semantic HTML. I also keep a bookmarked browser folder containing accessibility guides and refer to it while I'm developing. Even so, I like to go comb my projects thoroughly after reaching a checkpoint in order to ensure that I've made my components as accessible as I can make them.
 
-## Meta Tags and Favicon
+### Meta Tags and Favicon
 
-One thing I learned about SSR during this project was how much it improves SEO. I don't know if SSR requires a different approach to meta tags from client-side rendering, but I plan to learn how to include branding assets and other relevant meta data in the head of an server-side rendered app.
+One thing I learned about SSR during this project was how much it improves SEO. I don't know if SSR requires a different approach to meta tags from client-side rendering, but I plan to learn how to include social sharing assets and other relevant meta data in the head of a server-side rendered app.
+
+I'd also like to take some time to create a favicon for this app.
 
 ### Theming and Styling
 
