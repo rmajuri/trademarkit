@@ -49,6 +49,7 @@ const Home = () => {
       <Search
         searchPhrase={searchPhrase}
         setSearchPhrase={setSearchPhrase}
+        setAreResultsEmpty={setAreResultsEmpty}
         handleSearchSubmit={handleSearchSubmit} />
         { resultsCount ? (
           <h4>{resultsCount}{' '}results</h4>
@@ -56,7 +57,7 @@ const Home = () => {
         {/* If there's no search data to render, show the user a placholder message */}
         {trademarks.length ? (
           <ResultsTable trademarks={trademarks} />
-          ) : (<Placeholder areResultsEmpty={areResultsEmpty} />)
+          ) : (<Placeholder areResultsEmpty={areResultsEmpty} searchPhrase={searchPhrase} />)
         }
     </div>
   );

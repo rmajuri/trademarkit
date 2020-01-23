@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './placeholder.module.css';
 
-const Placeholder = ({areResultsEmpty}) => ( areResultsEmpty ?
+const Placeholder = ({areResultsEmpty, searchPhrase}) => ( areResultsEmpty && searchPhrase && searchPhrase.length  ?
     (<div className={styles.PlaceHolderEmptyResults}>
         Sorry - we've got nothin'.
      </div>
