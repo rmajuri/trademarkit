@@ -2,9 +2,7 @@
 
 ## What is it? What does it do?
 
-trademarkit is an app where you can search for brand names, or "wordmarks", in order to find information about the name's past and current usage.
-Search results show the user a description of the company or product that the trademarked name represents , along with information regarding the entitity that owns
-trademark, the city and state where the owner is located, and the status of the trademark (whether it is dead or active).
+trademarkit&#8482; is an app where you can search for brand names, or "wordmarks", in order to find information about the name's past and current usage. Search results show the user a description of the company or product that the trademarked name represents, along with information regarding the entitity that owns the trademark, the city and state where the owner is located, and the status of the trademark (whether it is dead or active).
 
 I chose this idea because I enjoy the challenge or coming up with clever and creative names, and I thought it would be fun to see how idea names are already being used, if at all.
 
