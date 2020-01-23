@@ -23,15 +23,23 @@ as a JSON object.
 
 ## Language and Framework Choices
 
-Since the client side framework I'm most proficient in is React, I chose to use it for building this project.
+Since React the client side framework I'm most proficient in is React, I chose to use it for building this project.
 
 ### Razzle project starter
 
 I also chose to ues the project starter named [Razzle](https://github.com/jaredpalmer/razzle) by [Jared Palmer](https://github.com/jaredpalmer) (a dev whose work I follow), which I've never used before.
-The reason I chose Razzle is that it through its CLI, you can a bootstrap a server-rendered project that is otherwise unopinionated regarding framework and architecture. Since I've never built a server-rendered app, and since the guide lines for the challenge explained that the URBN team uses SSR, I decided use this starter in order to learn more about implementing SSR.
+The reason I chose Razzle is that it through its CLI, you can a bootstrap a server-rendered project that is otherwise unopinionated regarding framework and architecture. Since I've never built a server-rendered appbut have been curious about doing so, and since the guide lines for the challenge explained that the URBN team uses SSR, I decided use this starter in order to learn more about implementing SSR.
 
 ### Material-UI
 
-[Material-UI](https://material-ui.com/) is a library of React components.
+[Material-UI](https://material-ui.com/) is a library of styled React components. The reason I chose to use it for this project is that even though I enjoy styling components through various techniques including JSS, CSS-Grid, CSS modules, Flexbox, and others, my timeframe for designing and styling was limited. 
+
+Material-UI allows for fast development while providing nice aesthetics. One thing I'd like to work on next is adding custom styling to the components.
+
+## Things I'd Like to Improve Upon
+
+
+
+
 
 
