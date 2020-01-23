@@ -61,6 +61,7 @@ const Home = () => {
                             // what placeholder to show the user
           ) : (<Placeholder areResultsEmpty={areResultsEmpty} searchPhrase={searchPhrase} />)
         }
+        <footer className="Footer">Made with &#8482; by <a href="https://www.robertmajuri.com/" target="blank">Rob Majuri</a></footer>
     </div>
   );
 };
