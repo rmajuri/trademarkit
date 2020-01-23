@@ -3,14 +3,15 @@ import React from 'react';
 import { StaticRouter } from 'react-router-dom';
 import express from 'express';
 import { renderToString } from 'react-dom/server';
-import trademarkAPI from './trademark'
+import trademarkAPI from './trademark';
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
 const server = express();
 
-server.use(express.json())
-server.use(express.urlencoded({ extended: false }))
+//Parse requests with URL-encoded payloads.
+//Send requests prefixed with "/trademark" to the endpoint that fetches search data
+server.use(express.urlencoded({ extended: false }));
 server.use('/trademark', trademarkAPI);
 
 server
@@ -53,5 +54,17 @@ server
       );
     }
   });
+
+//Catch 404s and forward to error handling endware
+
+server.use((req, res, next) => {
+  const err = new Error('Not Found')
+  err.status = 404
+  next(err)
+});
+
+server.use((err, req, res, next) => {
+  res.status(err.status || 500).send(err.message)
+});
 
 export default server;
