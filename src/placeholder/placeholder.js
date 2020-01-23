@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './placeholder.module.css';
+import Proptypes from 'prop-types';
 
 const Placeholder = ({areResultsEmpty, searchPhrase}) => ( areResultsEmpty && searchPhrase && searchPhrase.length  ?
     (<div className={styles.PlaceHolderEmptyResults}>
@@ -15,3 +16,7 @@ const Placeholder = ({areResultsEmpty, searchPhrase}) => ( areResultsEmpty && se
 
 export default Placeholder;
 
+Placeholder.propTypes = {
+    areResultsEmpty: Proptypes.bool.isRequired,
+    searchPhrase: Proptypes.string.isRequired
+};

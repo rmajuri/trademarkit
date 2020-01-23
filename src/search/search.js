@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextField, Button } from '@material-ui/core';
 import styles from './search.module.css';
+import Proptypes from 'prop-types';
 
 //Pass state and event handlers from the Home component to child search component
 const Search = ({ searchPhrase, setSearchPhrase, setAreResultsEmpty, handleSearchSubmit}) => {
@@ -32,3 +33,10 @@ const Search = ({ searchPhrase, setSearchPhrase, setAreResultsEmpty, handleSearc
 };
 
 export default Search;
+
+Search.propTypes = {
+    searchPhrase: Proptypes.string,
+    setSearchPhrase: Proptypes.func.isRequired,
+    setAreResultsEmpty: Proptypes.func.isRequired,
+    handleSearchSubmit: Proptypes.func.isRequired
+};
