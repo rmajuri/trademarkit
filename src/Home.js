@@ -57,6 +57,8 @@ const Home = () => {
         {/* If there's no search data to render, show the user a placholder message */}
         {trademarks.length ? (
           <ResultsTable trademarks={trademarks} />
+                            // Use empty results boolean state and search phrase length to determine
+                            // what placeholder to show the user
           ) : (<Placeholder areResultsEmpty={areResultsEmpty} searchPhrase={searchPhrase} />)
         }
     </div>

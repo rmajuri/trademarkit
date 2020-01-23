@@ -1,7 +1,15 @@
 .Container {
-    margin-top: 2em;
+    margin: 2em auto 0;
+    width: 70%;
 }
 
 .ContainerInput {
-    width: 70%;
+    width: 100%;
+}
+
+.Form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
