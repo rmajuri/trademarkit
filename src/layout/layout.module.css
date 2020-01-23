@@ -1,0 +1,23 @@
+.Header {
+  flex-shrink: 0;
+  background-color: var(--orange);
+  padding: 20px;
+  text-align: center;
+}
+  
+.Header h1 {
+  font-family: var(--font);
+  color: white;
+  letter-spacing: 0.1em;
+}
+
+.Footer {
+  flex-shrink: 0;
+  padding: 1em 0;
+  font-family: var(--font);
+  font-size: 1rem;
+  color: white;
+  background-color: var(--orange);
+  letter-spacing: 2px;
+  text-align: center;
+}
