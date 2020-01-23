@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Proptypes from 'prop-types';
 import { startCase } from 'lodash';
 //Import the necessary Material UI components via tree shaking for better peformance
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination, TableFooter} from '@material-ui/core';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination, TableFooter, Tooltip} from '@material-ui/core';
 import styles from './results-table.module.css';
 import PaginationControls from './pagination-controls'
 
@@ -29,7 +29,11 @@ const ResultsTable = ({ trademarks }) => {
             <Table aria-label="Trademark search results table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Wordmark</TableCell>
+                        <Tooltip title="&quot;...a distinct text-only typographic treatment of the name of a company, institution, or product name used for purposes of identification and branding...&quot; -Wikipedia" placement="top">
+                            <TableCell>
+                                    Wordmark
+                            </TableCell>
+                        </Tooltip>
                         <TableCell align="center">Description</TableCell>
                         <TableCell align="center">Owner</TableCell>
                         <TableCell align="center">City</TableCell>
