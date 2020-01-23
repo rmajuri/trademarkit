@@ -1,13 +1,14 @@
 .PlaceHolderEmptyResults {
   font-family: var(--font);
-  font-size: 2em;
-  margin-top: 2em;
+  font-size: 3rem;
+  margin-top: 2rem;
+  color: rgb(165, 163, 163);
 }
 
 .PlaceholderTM {
-  font-size: 8em;
+  font-size: 10em;
   color: #eee;
-  margin-top: .5em;
+  margin-top: 2rem;
   font-family: var(--font);
 }
 
