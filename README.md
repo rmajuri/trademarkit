@@ -1,4 +1,4 @@
-# trademarkit &#8482;
+# trademarkit&#8482;
 
 ## What is it? What does it do?
 
@@ -36,10 +36,31 @@ The reason I chose Razzle is that it through its CLI, you can a bootstrap a serv
 
 Material-UI allows for fast development while providing nice aesthetics. One thing I'd like to work on next is adding custom styling to the components.
 
-## Things I'd Like to Improve Upon
+## Things I'd Like to Improve
 
+### Material-UI & SSR Issues
 
+When you run trademarkit&#8482; locally, you'll notice a moment of unstyled HTML. Upon resarching the issue, I think that this comes from the need for extra configuration in order for Material-UI to work well with SRR. This is an issue I'm excited to look more into and solve.
 
+### Testing
+
+I plan to add tests for my components using [Jest](https://jestjs.io/) but have excluded them in the interest of timeliness. In my current role, I'm used to testing my Redux logic using [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/).
+
+### Theming and Styling
+
+I'm typically fairly meticulous about trying to write concise, responsive CSS and JSS and about constructing cohesively designed applications. One project for which I had a lot of fun doing this is called [Click-Chord](https://www.clickchord.com/), where I leaned heavily on CSS-Grid and customized Material-UI components heavily.
+
+### Functionality
+
+I'd like to add some smaller details such as a loading wheel that displays conditionally accoring to the data's loading state. 
+
+Also, I'd like to make the app more interesting (and more true to its title) by linking users to a destination where they can take further action toward filing for a trademark if they become interested in doing so while searching.
+
+## Conclusion
+
+I had a lot of fun working on this project. The guidelines and suggestions in the instructions also pushed me toward learning about some topics that I plan to keep exploring.
+
+Thank you for the opportunity!
 
 
 
