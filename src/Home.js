@@ -3,6 +3,7 @@ import './Home.css';
 import Search from './search/search'
 import ResultsTable from './results-table/results-table'
 import Placeholder from './placeholder/placeholder';
+import Layout from './layout/layout'
 
 const Home = () => {
   const [trademarks, setTrademarks] = useState([]);
@@ -42,27 +43,25 @@ const Home = () => {
   };
 
   return (
-    <div className="Home">
-      <header className="Home-header">
-        <h1>trademarket</h1>
-      </header>
-      <Search
-        searchPhrase={searchPhrase}
-        setSearchPhrase={setSearchPhrase}
-        setAreResultsEmpty={setAreResultsEmpty}
-        handleSearchSubmit={handleSearchSubmit} />
-        { resultsCount ? (
-          <h4>{resultsCount}{' '}results</h4>
-        ) : null}
-        {/* If there's no search data to render, show the user a placholder message */}
-        {trademarks.length ? (
-          <ResultsTable trademarks={trademarks} />
-                            // Use empty results boolean state and search phrase length to determine
-                            // what placeholder to show the user
-          ) : (<Placeholder areResultsEmpty={areResultsEmpty} searchPhrase={searchPhrase} />)
-        }
-        <footer className="Footer">Made with &#8482; by <a href="https://www.robertmajuri.com/" target="blank">Rob Majuri</a></footer>
-    </div>
+    <Layout>
+      <div className="Home">
+          <Search
+            searchPhrase={searchPhrase}
+            setSearchPhrase={setSearchPhrase}
+            setAreResultsEmpty={setAreResultsEmpty}
+            handleSearchSubmit={handleSearchSubmit} />
+            { resultsCount ? (
+              <h4>{resultsCount}{' '}results</h4>
+            ) : null}
+            {/* If there's no search data to render, show the user a placholder message */}
+            {trademarks.length ? (
+              <ResultsTable trademarks={trademarks} />
+                                // Use empty results boolean state and search phrase length to determine
+                                // what placeholder to show the user
+              ) : (<Placeholder areResultsEmpty={areResultsEmpty} searchPhrase={searchPhrase} />)
+            }
+      </div>
+    </Layout>
   );
 };
 

@@ -1,5 +1,29 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+/* Variables for convenient reference */
+:root {
+  --orange: #FF851b;
+  --teal: #39CCCC;
+  --black: #111;
+  --font: arial, sans-serif;
 }
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100vh;
+}
+
+body {
+  min-height: 100vh;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+

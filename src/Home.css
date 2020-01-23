@@ -1,37 +1,4 @@
-/* Variables for convenient reference */
-:root {
-  --orange: #FF851b;
-  --teal: #39CCCC;
-  --black: #111;
-  --font: arial, sans-serif;
-}
-
-/* Home styles */
-
 .Home {
   text-align: center;
-}
-
-.Home-header {
-  background-color: var(--orange);
-  padding: 20px;
-}
-
-/* Header styles */
-
-.Home-header h1 {
-  font-family: var(--font);
-  color: white;
-  letter-spacing: 0.1em;
-}
-
-.Footer {
-  padding: 1rem 0;
-  margin-top: 2rem;
-  font-family: var(--font);
-  font-size: 1rem;
-  color: white;
-  background-color: var(--orange);
-  letter-spacing: 0.1rem;
-  text-align: center;
+  flex-grow: 1;
 }
