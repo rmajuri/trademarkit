@@ -1,7 +1,8 @@
 import React from 'react';
-import styles from './placeholder.module.css';
-import { Typography } from '@material-ui/core'
 import Proptypes from 'prop-types';
+import { Typography } from '@material-ui/core';
+import styles from './placeholder.module.css';
+
 
 const Placeholder = ({areResultsEmpty, searchPhrase}) => ( areResultsEmpty && searchPhrase && searchPhrase.length  ?
     (<div className={styles.PlaceHolderEmptyResults}>

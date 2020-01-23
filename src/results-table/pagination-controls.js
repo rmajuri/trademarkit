@@ -1,7 +1,9 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 import { IconButton } from '@material-ui/core';
-import styles from './pagination-controls.module.css'
 import { FirstPage, KeyboardArrowLeft, KeyboardArrowRight, LastPage } from '@material-ui/icons';
+import styles from './pagination-controls.module.css';
+
 
 const PaginationControls = props => {
     const { count, page, rowsPerPage, onChangePage } = props;
@@ -54,3 +56,10 @@ const PaginationControls = props => {
 };
 
 export default PaginationControls;
+
+PaginationControls.propTypes = {
+    count: Proptypes.number.isRequired,
+    page: Proptypes.number.isRequired,
+    rowsPerPage: Proptypes.number.isRequired,
+    onChangePage: Proptypes.func.isRequired
+};

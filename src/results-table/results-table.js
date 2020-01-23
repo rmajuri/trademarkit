@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import styles from './results-table.module.css';
+import Proptypes from 'prop-types';
 import { startCase } from 'lodash';
-import PaginationControls from './pagination-controls'
 //Import the necessary Material UI components via tree shaking for better peformance
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination, TableFooter} from '@material-ui/core';
+import styles from './results-table.module.css';
+import PaginationControls from './pagination-controls'
 
 
 const ResultsTable = ({ trademarks }) => {
@@ -84,3 +85,8 @@ const ResultsTable = ({ trademarks }) => {
 };
 
 export default ResultsTable;
+
+ResultsTable.propTypes = {
+    trademarks: Proptypes.array.isRequired
+};
+

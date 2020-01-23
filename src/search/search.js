@@ -1,8 +1,9 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 import { TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 import styles from './search.module.css';
-import Proptypes from 'prop-types';
+
 
 //JSS required to add custom position to button
 const useStyles = makeStyles({
