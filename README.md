@@ -1,5 +1,13 @@
 # trademarkit&#8482;
 
+## How to run this project
+
+After cloning this project, `cd` into it, and then run `npm install` or `yarn install`.
+
+Then run `npm start` or `yarn start`.
+
+The project will then be running on http://localhost:3000/.
+
 ## What is it? What does it do?
 
 trademarkit&#8482; is an app where you can search for brand names, or "wordmarks", in order to find information about the name's past and current usage. Search results show the user a description of the company or product that the trademarked name represents, along with information regarding the entitity that owns the trademark, the city and state where the owner is located, and the status of the trademark (whether it is dead or active).
@@ -27,7 +35,7 @@ The reason I chose Razzle is that it through its CLI, you can a bootstrap a serv
 
 ### Material-UI
 
-[Material-UI](https://material-ui.com/) is a library of styled React components. The reason I chose to use it for this project is that, even though I enjoy styling components through various techniques including JSS, CSS-Grid, CSS modules, Flexbox, and others, my timeframe for designing and styling was limited. 
+[Material-UI](https://material-ui.com/) is a library of styled React components. The reason I chose to use it for this project is that, even though I enjoy styling components through various techniques including JSS, CSS-Grid, CSS modules, Flexbox, and others, my timeframe for designing and styling was limited.
 
 Material-UI allows for fast development while providing nice aesthetics. One thing I'd like to work on next is adding custom styling to the components.
 
@@ -40,6 +48,14 @@ When you run trademarkit&#8482; locally, you'll notice a moment of unstyled HTML
 ### Testing
 
 I plan to add tests for my components using [Jest](https://jestjs.io/) but have excluded them in the interest of timeliness. In my current role, I'm used to testing my Redux logic using [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/).
+
+### Accessibility
+
+I try my best to be cognizant of accessibility standards, first by writing semantic HTML. I also keep a bookmarked browser folder containing accessibility guides and refer to it while I'm developing. Even so, I like to go comb project thoroughly after reaching a checkpoint in order to ensure that I've made my components as accessible as I can make them.
+
+## Meta Tags and Favicon
+
+One thing I learned about SSR during this project was how much it improves SEO. I don't know if SSR requires a different approach to meta tags from client-side rendering, but I plan to learn how to include branding assets and other relevant meta data in the head of an server-side rendered app.
 
 ### Theming and Styling
 
@@ -56,6 +72,3 @@ Also, I'd like to make the app more interesting (and more true to its title) by 
 I had a lot of fun working on this project. The guidelines and suggestions in the instructions pushed me toward learning about some topics that I plan to keep exploring.
 
 Thank you for the opportunity!
-
-
-
