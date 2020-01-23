@@ -15,4 +15,3 @@ const Placeholder = ({areResultsEmpty, searchPhrase}) => ( areResultsEmpty && se
 
 export default Placeholder;
 
-

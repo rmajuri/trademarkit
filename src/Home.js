@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './Home.css';
-import Search from './search/search'
-import ResultsTable from './results-table/results-table'
+import Search from './search/search';
+import ResultsTable from './results-table/results-table';
 import Placeholder from './placeholder/placeholder';
-import Layout from './layout/layout'
+import Layout from './layout/layout';
 
 const Home = () => {
   const [trademarks, setTrademarks] = useState([]);
