@@ -34,7 +34,7 @@ server
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta charset="utf-8" />
-        <title>trademarket</title>
+        <title>trademarkit</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         ${
           assets.client.css
@@ -54,5 +54,17 @@ server
       );
     }
   });
+
+//Catch 404s and forward to error handling endware
+
+server.use((req, res, next) => {
+  const err = new Error('Not Found')
+  err.status = 404
+  next(err)
+});
+
+server.use((err, req, res, next) => {
+  res.status(err.status || 500).send(err.message)
+});
 
 export default server;
