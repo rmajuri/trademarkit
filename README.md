@@ -34,7 +34,7 @@ I also chose to ues the project starter named [Razzle](https://github.com/jaredp
 
 ### Material-UI
 
-[Material-UI](https://material-ui.com/) is a library of styled React components. The reason I chose to use it for this project is that, even though I enjoy styling components through various techniques including JSS, CSS-Grid, CSS modules, Flexbox, and others, my timeframe for designing and styling was limited.
+[Material-UI](https://material-ui.com/) is a library of styled React components. The reason I chose to use it for this project is that, even though I enjoy styling components through various techniques including [JSS](https://cssinjs.org/?v=v10.0.3), CSS-Grid, CSS modules, Flexbox, and others, my timeframe for designing and styling was limited.
 
 Material-UI allows for fast development while providing nice aesthetics. One thing I'd like to work on next is adding custom styling to the components.
 
@@ -64,7 +64,7 @@ I'm usually fairly meticulous about trying to write concise, responsive CSS and 
 
 ### Functionality
 
-I'd like to add some smaller details such as a loading wheel that displays conditionally accoring to the data's loading state. 
+I'd like to add some smaller details such as a loading wheel that displays conditionally accoring to the data's loading state.
 
 Also, I'd like to make the app more interesting (and more true to its title) by linking users to a destination where they can take further action toward filing for a given trademark if they become interested in doing so while searching.
 
