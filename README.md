@@ -6,7 +6,7 @@ After cloning this project, `cd` into it, and then run `npm install` or `yarn in
 
 Then run `npm start` or `yarn start`.
 
-The project will then be running on http://localhost:3000/.
+The app will then be running on http://localhost:3000/.
 
 ## What is it? What does it do?
 
