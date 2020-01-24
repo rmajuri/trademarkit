@@ -30,7 +30,6 @@ const Home = () => {
           //A response with no results yields a string in the trademarks field that says "no results".
           //Therefore, instead of merely checking for null, it's safe to also check if the value is also an array.
           if (Array.isArray(searchResults.trademarks)) {
-            console.log(searchResults.trademarks)
             setTrademarks(searchResults.trademarks);
             //Even though the response data contains a "counts" property, the array of trademark data
             //more likely to be correct, since it is calculated
