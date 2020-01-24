@@ -1,14 +1,20 @@
-.PlaceHolderEmptyResults {
+.Placeholder {
+  margin-top: 2em;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--font);
-  font-size: 3rem;
-  margin-top: 2rem;
+}
+
+.PlaceHolderEmptyResults {
+  margin-top: 1em;
+  align-self: flex-start;
   color: rgb(165, 163, 163);
 }
 
 .PlaceholderTM {
   font-size: 10em;
   color: #eee;
-  margin-top: 2rem;
-  font-family: var(--font);
 }
 

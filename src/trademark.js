@@ -1,7 +1,7 @@
-import { Router } from 'express'
-import axios from 'axios'
+import { Router } from 'express';
+import axios from 'axios';
 
-const router = Router()
+const router = Router();
 
 router.get('/:searchPhrase', async (req, res, next) => {
     try {
@@ -12,4 +12,4 @@ router.get('/:searchPhrase', async (req, res, next) => {
     }
 });
 
-export default router
+export default router;

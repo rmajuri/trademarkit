@@ -16,7 +16,7 @@ const Layout = props => (
         </header>
             {props.children}
         <footer className={styles.Footer}>
-            Made with{' '}<span aria-label="trademark symbol">&#8482;</span>by{' '}<a href="https://www.robertmajuri.com/" target="blank">Rob Majuri</a>
+            Made with <span aria-label="trademark symbol">&#8482;</span> by <a href="https://www.robertmajuri.com/" target="blank">Rob Majuri</a>
         </footer>
     </>
 );

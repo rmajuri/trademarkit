@@ -3,14 +3,23 @@ import Proptypes from 'prop-types';
 import { startCase } from 'lodash';
 //Import the necessary Material UI components via tree shaking for better peformance
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination, TableFooter, Tooltip} from '@material-ui/core';
+import { makeStyles }  from '@material-ui/core/styles';
 import styles from './results-table.module.css';
 import PaginationControls from './pagination-controls'
+
+const useStyles = makeStyles({
+    tooltip: {
+        fontSize: '18px'
+    }
+})
 
 
 const ResultsTable = ({ trademarks }) => {
     //Always start pagination at page 0
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerpage] = useState(5);
+
+    const classes = useStyles();
 
     //Calculation to use to fill the appropriate amount of space if the row count falls short of the minimum
     const emptyRowFiller = rowsPerPage - Math.min(rowsPerPage, trademarks.length - page * rowsPerPage);
@@ -30,7 +39,7 @@ const ResultsTable = ({ trademarks }) => {
                 <TableHead>
                     <TableRow>
                         {/* Explain the somewhat obscure term "wordmark" on hover */}
-                        <Tooltip title="&quot;...a distinct text-only typographic treatment of the name of a company, institution, or product name used for purposes of identification and branding...&quot; -Wikipedia" placement="top">
+                        <Tooltip classes={{tooltip: classes.tooltip}} title="&quot;...a distinct text-only typographic treatment of the name of a company, institution, or product name used for purposes of identification and branding...&quot; -Wikipedia">
                             <TableCell>
                                     Wordmark
                             </TableCell>
