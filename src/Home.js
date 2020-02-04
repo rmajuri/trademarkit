@@ -20,7 +20,7 @@ const Home = () => {
         if (searchResults.trademarks) {
 
           //If the results are empty, we want this information in state,
-          //so tht we can show the user a helpful message.
+          //so that we can show the user a helpful message.
           if (typeof searchResults.trademarks === 'string' && searchResults.trademarks === 'noresults') {
             setAreResultsEmpty(true);
             setTrademarks([]);
