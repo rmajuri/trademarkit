@@ -59,7 +59,6 @@ export default PaginationControls;
 
 PaginationControls.propTypes = {
     count: Proptypes.number.isRequired,
-    page: Proptypes.number.isRequired,
     rowsPerPage: Proptypes.number.isRequired,
     onChangePage: Proptypes.func.isRequired
 };

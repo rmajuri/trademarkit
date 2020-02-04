@@ -10,6 +10,7 @@ const Home = () => {
   const [resultsCount, setResultsCount] = useState(0);
   const [searchPhrase, setSearchPhrase] = useState('');
   const [areResultsEmpty, setAreResultsEmpty] = useState(false);
+  const [page, setPage] = useState(0);
 
   const handleSearchSubmit = event => {
     event.preventDefault()
@@ -25,6 +26,7 @@ const Home = () => {
             setAreResultsEmpty(true);
             setTrademarks([]);
             setResultsCount(0);
+            setPage(0);
           }
 
           //A response with no results yields a string in the trademarks field that says "no results".
@@ -35,6 +37,7 @@ const Home = () => {
             //more likely to be correct, since it is calculated
             setResultsCount(searchResults.trademarks.length);
             setAreResultsEmpty(false);
+            setPage(0);
           }
         }
       })
@@ -54,7 +57,7 @@ const Home = () => {
             ) : null}
             {/* If there's no search data to render, show the user a placholder message */}
             {trademarks.length ? (
-              <ResultsTable trademarks={trademarks} />
+              <ResultsTable trademarks={trademarks}  setPage={setPage} page={page} />
                                 // Use empty results boolean state and search phrase length to determine
                                 // what placeholder to show the user
               ) : (<Placeholder areResultsEmpty={areResultsEmpty} searchPhrase={searchPhrase} />)
