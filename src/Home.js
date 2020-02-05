@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { CircularProgress } from '@material-ui/core'
 import './Home.css';
 import Search from './search/search';
 import ResultsTable from './results-table/results-table';
@@ -11,11 +12,15 @@ const Home = () => {
   const [searchPhrase, setSearchPhrase] = useState('');
   const [areResultsEmpty, setAreResultsEmpty] = useState(false);
   const [page, setPage] = useState(0);
+  const [isLoadingState, setIsLoadingState] = useState(false);
 
   const handleSearchSubmit = event => {
     event.preventDefault()
     fetch(`/trademark/${encodeURI(searchPhrase)}/`)
-      .then((res) => res.json())
+      .then((res) => {
+        setIsLoadingState(true);
+        return res.json();
+      })
       .then((searchResults) => {
 
         if (searchResults.trademarks) {
@@ -39,9 +44,13 @@ const Home = () => {
             setAreResultsEmpty(false);
             setPage(0);
           }
+          setIsLoadingState(false);
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        setIsLoadingState(false);
+      });
   };
 
   return (
@@ -56,7 +65,9 @@ const Home = () => {
               <h4>{resultsCount}{' '}results</h4>
             ) : null}
             {/* If there's no search data to render, show the user a placholder message */}
-            {trademarks.length ? (
+            { isLoadingState ? (
+              (<CircularProgress />)
+            ) : trademarks.length ? (
               <ResultsTable trademarks={trademarks}  setPage={setPage} page={page} />
                                 // Use empty results boolean state and search phrase length to determine
                                 // what placeholder to show the user
