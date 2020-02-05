@@ -18,6 +18,7 @@ const Home = () => {
     event.preventDefault()
     fetch(`/trademark/${encodeURI(searchPhrase)}/`)
       .then((res) => {
+        setResultsCount(0);
         setIsLoadingState(true);
         return res.json();
       })
@@ -30,7 +31,6 @@ const Home = () => {
           if (typeof searchResults.trademarks === 'string' && searchResults.trademarks === 'noresults') {
             setAreResultsEmpty(true);
             setTrademarks([]);
-            setResultsCount(0);
             setPage(0);
           }
 
@@ -66,7 +66,9 @@ const Home = () => {
             ) : null}
             {/* If there's no search data to render, show the user a placholder message */}
             { isLoadingState ? (
-              (<CircularProgress />)
+              <div className="LoadingState">
+                <CircularProgress />
+              </div>
             ) : trademarks.length ? (
               <ResultsTable trademarks={trademarks}  setPage={setPage} page={page} />
                                 // Use empty results boolean state and search phrase length to determine
