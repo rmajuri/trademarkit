@@ -14,9 +14,8 @@ const useStyles = makeStyles({
 })
 
 
-const ResultsTable = ({ trademarks }) => {
+const ResultsTable = ({ trademarks, page, setPage }) => {
     //Always start pagination at page 0
-    const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerpage] = useState(5);
 
     const classes = useStyles();

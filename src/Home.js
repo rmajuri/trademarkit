@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { CircularProgress } from '@material-ui/core'
 import './Home.css';
 import Search from './search/search';
 import ResultsTable from './results-table/results-table';
@@ -10,21 +11,27 @@ const Home = () => {
   const [resultsCount, setResultsCount] = useState(0);
   const [searchPhrase, setSearchPhrase] = useState('');
   const [areResultsEmpty, setAreResultsEmpty] = useState(false);
+  const [page, setPage] = useState(0);
+  const [isLoadingState, setIsLoadingState] = useState(false);
 
   const handleSearchSubmit = event => {
     event.preventDefault()
     fetch(`/trademark/${encodeURI(searchPhrase)}/`)
-      .then((res) => res.json())
+      .then((res) => {
+        setResultsCount(0);
+        setIsLoadingState(true);
+        return res.json();
+      })
       .then((searchResults) => {
 
         if (searchResults.trademarks) {
 
           //If the results are empty, we want this information in state,
-          //so tht we can show the user a helpful message.
+          //so that we can show the user a helpful message.
           if (typeof searchResults.trademarks === 'string' && searchResults.trademarks === 'noresults') {
             setAreResultsEmpty(true);
             setTrademarks([]);
-            setResultsCount(0);
+            setPage(0);
           }
 
           //A response with no results yields a string in the trademarks field that says "no results".
@@ -35,10 +42,15 @@ const Home = () => {
             //more likely to be correct, since it is calculated
             setResultsCount(searchResults.trademarks.length);
             setAreResultsEmpty(false);
+            setPage(0);
           }
+          setIsLoadingState(false);
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        setIsLoadingState(false);
+      });
   };
 
   return (
@@ -53,8 +65,12 @@ const Home = () => {
               <h4>{resultsCount}{' '}results</h4>
             ) : null}
             {/* If there's no search data to render, show the user a placholder message */}
-            {trademarks.length ? (
-              <ResultsTable trademarks={trademarks} />
+            { isLoadingState ? (
+              <div className="LoadingState">
+                <CircularProgress />
+              </div>
+            ) : trademarks.length ? (
+              <ResultsTable trademarks={trademarks}  setPage={setPage} page={page} />
                                 // Use empty results boolean state and search phrase length to determine
                                 // what placeholder to show the user
               ) : (<Placeholder areResultsEmpty={areResultsEmpty} searchPhrase={searchPhrase} />)
