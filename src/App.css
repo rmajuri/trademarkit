@@ -16,10 +16,6 @@ html {
   font-family: var(--font);
 }
 
-/* body {
-  min-height: 100%;
-} */
-
 #root {
   height: 100vh;
   display: flex;
