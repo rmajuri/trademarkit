@@ -19,6 +19,7 @@ const Home = () => {
     fetch(`/trademark/${encodeURI(searchPhrase)}/`)
       .then((res) => {
         setResultsCount(0);
+        setPage(0);
         setIsLoadingState(true);
         return res.json();
       })
@@ -31,7 +32,6 @@ const Home = () => {
           if (typeof searchResults.trademarks === 'string' && searchResults.trademarks === 'noresults') {
             setAreResultsEmpty(true);
             setTrademarks([]);
-            setPage(0);
           }
 
           //A response with no results yields a string in the trademarks field that says "no results".
@@ -42,7 +42,6 @@ const Home = () => {
             //more likely to be correct, since it is calculated
             setResultsCount(searchResults.trademarks.length);
             setAreResultsEmpty(false);
-            setPage(0);
           }
           setIsLoadingState(false);
         }
