@@ -15,7 +15,7 @@ const Home = () => {
   const [isLoadingState, setIsLoadingState] = useState(false);
 
   const handleSearchSubmit = event => {
-    event.preventDefault()
+    event.preventDefault();
     fetch(`/trademark/${encodeURI(searchPhrase)}/`)
       .then((res) => {
         setResultsCount(0);
