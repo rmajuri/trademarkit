@@ -1,6 +1,6 @@
 import React from 'react';
 import Proptypes from 'prop-types';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, NoSsr } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 import styles from './search.module.css';
 
@@ -25,22 +25,26 @@ const Search = ({ searchPhrase, setSearchPhrase, setAreResultsEmpty, handleSearc
         }
     };
 
-    return (<div className={styles.Container}>
-                <form onSubmit={handleSearchSubmit} className={styles.Form}>
-                    <TextField
-                        className={styles.ContainerInput}
-                        label="Search trademarks"
-                        variant="outlined"
-                        placeholder="Enter a brand name idea to see relevant trademark information"
-                        //Update the search phrase state on every user key stroke
-                        onChange={handleSearchPhraseChange}
-                        //Bind the search phrase state to the search input
-                        value={searchPhrase}
-                        required
-                        />
-                    <Button type="submit" label="submit" className={[styles.FormButton, classes.root].join(' ')}>submit</Button>
-                </form>
-            </div>);
+    return (
+            <NoSsr>
+                <div className={styles.Container}>
+                    <form onSubmit={handleSearchSubmit} className={styles.Form}>
+                        <TextField
+                            className={styles.ContainerInput}
+                            label="Search trademarks"
+                            variant="outlined"
+                            placeholder="Enter a brand name idea to see relevant trademark information"
+                            //Update the search phrase state on every user key stroke
+                            onChange={handleSearchPhraseChange}
+                            //Bind the search phrase state to the search input
+                            value={searchPhrase}
+                            required
+                            />
+                        <Button type="submit" label="submit" className={[styles.FormButton, classes.root].join(' ')}>submit</Button>
+                    </form>
+                </div>
+            </NoSsr>
+            );
 };
 
 export default Search;
