@@ -13,12 +13,7 @@
 }
 
 html {
-  height: 100vh;
   font-family: var(--font);
-}
-
-body {
-  min-height: 100vh;
 }
 
 #root {

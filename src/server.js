@@ -35,6 +35,11 @@ server
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta charset="utf-8" />
         <title>trademarkit</title>
+        <meta property="og:title" content="trademarkit">
+        <meta property="og:description" content="Search for name idea to find out if they're trademarked.">
+        <meta property="og:image" content="./tm.png">
+        <meta property="og:image:width" content="500" />
+        <meta property="og:image:height" content="500" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         ${
           assets.client.css

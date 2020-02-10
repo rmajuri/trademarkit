@@ -9,7 +9,7 @@ import PaginationControls from './pagination-controls'
 
 const useStyles = makeStyles({
     tooltip: {
-        fontSize: '18px'
+        fontSize: '18px',
     }
 })
 
@@ -39,7 +39,7 @@ const ResultsTable = ({ trademarks, page, setPage }) => {
                     <TableRow>
                         {/* Explain the somewhat obscure term "wordmark" on hover */}
                         <Tooltip classes={{tooltip: classes.tooltip}} title="&quot;...a distinct text-only typographic treatment of the name of a company, institution, or product name used for purposes of identification and branding...&quot; -Wikipedia">
-                            <TableCell>
+                            <TableCell style={{cursor: 'default'}}>
                                     Wordmark
                             </TableCell>
                         </Tooltip>
