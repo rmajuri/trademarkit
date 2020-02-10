@@ -4,7 +4,6 @@ import { StaticRouter } from 'react-router-dom';
 import express from 'express';
 import { renderToString } from 'react-dom/server';
 import trademarkAPI from './trademark';
-import path from 'path';
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
