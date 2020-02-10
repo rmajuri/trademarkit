@@ -4,6 +4,7 @@ import { StaticRouter } from 'react-router-dom';
 import express from 'express';
 import { renderToString } from 'react-dom/server';
 import trademarkAPI from './trademark';
+import path from 'path';
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
@@ -16,7 +17,7 @@ server.use('/trademark', trademarkAPI);
 
 server
   .disable('x-powered-by')
-  .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
+  .use(express.static(process.env.NODE_ENV === 'production' ? path.join(__dirname, '../build/public') : 'public'))
   .get('/*', (req, res) => {
     const context = {};
     const markup = renderToString(
