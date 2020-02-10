@@ -17,7 +17,7 @@ server.use('/trademark', trademarkAPI);
 
 server
   .disable('x-powered-by')
-  .use(express.static(process.env.NODE_ENV === 'production' ? path.join(__dirname, '../build/public') : 'public'))
+  .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
   .get('/*', (req, res) => {
     const context = {};
     const markup = renderToString(
