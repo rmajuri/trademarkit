@@ -13,6 +13,7 @@ const Home = () => {
   const [areResultsEmpty, setAreResultsEmpty] = useState(false);
   const [page, setPage] = useState(0);
   const [isLoadingState, setIsLoadingState] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const handleSearchSubmit = event => {
     event.preventDefault();
@@ -20,7 +21,9 @@ const Home = () => {
       .then((res) => {
         setResultsCount(0);
         setPage(0);
+        setTrademarks([]);
         setIsLoadingState(true);
+        setIsError(false);
         return res.json();
       })
       .then((searchResults) => {
@@ -49,6 +52,7 @@ const Home = () => {
       .catch((err) => {
         console.error(err);
         setIsLoadingState(false);
+        setIsError(true);
       });
   };
 
@@ -72,7 +76,7 @@ const Home = () => {
               <ResultsTable trademarks={trademarks}  setPage={setPage} page={page} />
                                 // Use empty results boolean state and search phrase length to determine
                                 // what placeholder to show the user
-              ) : (<Placeholder areResultsEmpty={areResultsEmpty} searchPhrase={searchPhrase} />)
+              ) : (<Placeholder areResultsEmpty={areResultsEmpty} searchPhrase={searchPhrase} isError={isError} />)
             }
       </div>
     </Layout>
