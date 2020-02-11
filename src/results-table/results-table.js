@@ -100,6 +100,7 @@ const ResultsTable = ({ trademarks, page, setPage }) => {
 export default ResultsTable;
 
 ResultsTable.propTypes = {
-    trademarks: Proptypes.array.isRequired
+    trademarks: Proptypes.array.isRequired,
+    page: Proptypes.number.isRequired,
+    setPage: Proptypes.func.isRequired
 };
-
