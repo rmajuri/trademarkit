@@ -3,7 +3,11 @@ import React from 'react';
 import { StaticRouter } from 'react-router-dom';
 import express from 'express';
 import { renderToString } from 'react-dom/server';
+import { ServerStyleSheets } from '@material-ui/core/styles';
 import trademarkAPI from './trademark';
+
+const sheets = new ServerStyleSheets();
+const cssString = sheets.toString();
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
@@ -19,11 +23,11 @@ server
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
   .get('/*', (req, res) => {
     const context = {};
-    const markup = renderToString(
+    const markup = renderToString(sheets.collect(
       <StaticRouter context={context} location={req.url}>
         <App />
       </StaticRouter>
-    );
+    ));
 
     if (context.url) {
       res.redirect(context.url);
@@ -51,6 +55,7 @@ server
             ? `<script src="${assets.client.js}" defer></script>`
             : `<script src="${assets.client.js}" defer crossorigin></script>`
         }
+        <style id="jss-server-side">${cssString}</style>
     </head>
     <body>
         <div id="root">${markup}</div>
