@@ -6,12 +6,12 @@ import styles from './placeholder.module.css';
 const Placeholder = ({ areResultsEmpty, searchPhrase, isError }) => (
         <div className={styles.Placeholder}>
             {areResultsEmpty && searchPhrase && searchPhrase.length  ?
-                (<div className={styles.PlaceHolderEmptyResults}>
+                (<div className={styles.PlaceHolderText}>
                     <Typography variant="h5">
                         Sorry - we've got nothin'.
                     </Typography>
                  </div>) : isError ? (
-                    <div className={styles.PlaceHolderEmptyResults}>
+                    <div className={styles.PlaceHolderText}>
                      <Typography variant="h5">
                         Dang - somethin' went wrong.
                      </Typography>
