@@ -5,7 +5,7 @@ import Search from '../search/search';
 it('renders App correctly', () => {
   const tree = renderer
     .create(
-        <Search searchPhrase="cats"  />
+        <Search searchPhrase="cats" />
     )
     .toJSON();
   expect(tree).toMatchSnapshot();
