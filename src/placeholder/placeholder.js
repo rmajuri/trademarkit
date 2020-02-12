@@ -28,5 +28,6 @@ export default Placeholder;
 
 Placeholder.propTypes = {
     areResultsEmpty: Proptypes.bool.isRequired,
-    searchPhrase: Proptypes.string.isRequired
+    searchPhrase: Proptypes.string.isRequired,
+    isError: Proptypes.bool.isRequired
 };
