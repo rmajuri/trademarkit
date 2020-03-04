@@ -30,7 +30,7 @@ Since the client side framework I'm most proficient in is React, I chose to use 
 
 ### Razzle project starter
 
-I also chose to ues the project starter named [Razzle](https://github.com/jaredpalmer/razzle) by [Jared Palmer](https://github.com/jaredpalmer) (a dev whose work I follow), which I've never used before. The reason I chose Razzle is that it through its CLI, you can a bootstrap a server-rendered project that is otherwise unopinionated regarding framework and architecture. Since I've never built a server-rendered app but have been curious about doing so, and since the guide lines for the challenge explained that the URBN team uses SSR, I decided to use this starter in order to learn more about implementing SSR.
+I also chose to ues the project starter named [Razzle](https://github.com/jaredpalmer/razzle) by [Jared Palmer](https://github.com/jaredpalmer) (a dev whose work I follow), which I've never used before. The reason I chose Razzle is that it through its CLI, you can a bootstrap a server-rendered project that is otherwise unopinionated regarding framework and architecture. Since I'd never built a server-rendered app but have been curious about doing so, I decided to use this starter in order to learn more about implementing SSR.
 
 ### Material-UI
 
