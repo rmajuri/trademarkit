@@ -67,9 +67,3 @@ I'm usually fairly meticulous about trying to write concise, responsive CSS and 
 I'd like to add some smaller details such as a loading wheel that displays conditionally accoring to the data's loading state.
 
 Also, I'd like to make the app more interesting (and more true to its title) by linking users to a destination where they can take further action toward filing for a given trademark if they become interested in doing so while searching.
-
-## Conclusion
-
-I had a lot of fun working on this project. The guidelines and suggestions in the instructions pushed me toward learning about some topics that I plan to keep exploring.
-
-Thank you for the opportunity!
