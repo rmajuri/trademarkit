@@ -34,7 +34,7 @@ I also chose to ues the project starter named [Razzle](https://github.com/jaredp
 
 ### Material-UI
 
-[Material-UI](https://material-ui.com/) is a library of styled React components. The reason I chose to use it for this project is that, even though I enjoy styling components through various techniques including [JSS](https://cssinjs.org/?v=v10.0.3), CSS-Grid, CSS modules, Flexbox, and others, my timeframe for designing and styling was limited.
+[Material-UI](https://material-ui.com/) is a library of styled React components.
 
 Material-UI allows for fast development while providing nice aesthetics. One thing I'd like to work on next is adding custom styling to the components.
 
@@ -46,7 +46,7 @@ When you run trademarkit&#8482; locally, you'll notice a moment of unstyled HTML
 
 ### Testing
 
-I plan to add tests for my components using [Jest](https://jestjs.io/) but have excluded them in the interest of timeliness. In my current role, I'm used to testing my Redux logic using [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/).
+I plan to add tests for my components using [Jest](https://jestjs.io/).
 
 ### Accessibility
 
