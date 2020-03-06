@@ -5,7 +5,8 @@
   "scripts": {
     "start": "NODE_ENV=production node build/server.js",
     "build": "razzle build",
-    "test": "razzle test --env=jsdom"
+    "test": "razzle test --env=jsdom",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@material-ui/core": "^4.8.3",
