@@ -37,33 +37,3 @@ I also chose to ues the project starter named [Razzle](https://github.com/jaredp
 [Material-UI](https://material-ui.com/) is a library of styled React components.
 
 Material-UI allows for fast development while providing nice aesthetics. One thing I'd like to work on next is adding custom styling to the components.
-
-## Things I'd Like to Improve
-
-### Material-UI & SSR Issues
-
-When you run trademarkit&#8482; locally, you'll notice a moment of unstyled HTML. Upon resarching the issue, I think that this comes from the need for extra configuration in order for Material-UI to work seamlessly with SRR. This is an issue I'm excited to look more into and solve.
-
-### Testing
-
-I plan to add tests for my components using [Jest](https://jestjs.io/).
-
-### Accessibility
-
-I try my best to be cognizant of accessibility standards, first by writing semantic HTML. I also keep a bookmarked browser folder containing accessibility guides and refer to it while I'm developing. Even so, I like to go comb my projects thoroughly after reaching a checkpoint in order to ensure that I've made my components as accessible as I can make them.
-
-### Meta Tags and Favicon
-
-One thing I learned about SSR during this project was how much it improves SEO. I don't know if SSR requires a different approach to meta tags from client-side rendering, but I plan to learn how to include social sharing assets and other relevant meta data in the head of a server-side rendered app.
-
-I'd also like to take some time to create a favicon for this app.
-
-### Theming and Styling
-
-I'm usually fairly meticulous about trying to write concise, responsive CSS and JSS and about constructing cohesively designed applications. One project for which I had a lot of fun doing this is called [Click-Chord](https://www.clickchord.com/), where I leaned heavily on CSS-Grid and customized Material-UI components heavily using JSS.
-
-### Functionality
-
-I'd like to add some smaller details such as a loading wheel that displays conditionally accoring to the data's loading state.
-
-Also, I'd like to make the app more interesting (and more true to its title) by linking users to a destination where they can take further action toward filing for a given trademark if they become interested in doing so while searching.
