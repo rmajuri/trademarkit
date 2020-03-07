@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CircularProgress } from '@material-ui/core'
 import './Home.css';
 import Search from './search/search';
 import ResultsTable from './results-table/results-table';
 import Placeholder from './placeholder/placeholder';
 import Layout from './layout/layout';
+import { createBrowserHistory } from 'history';
+import queryString from 'query-string';
+import ShareInput from './share-input/share-input';
 
 const Home = () => {
   const [trademarks, setTrademarks] = useState([]);
@@ -15,46 +18,64 @@ const Home = () => {
   const [isLoadingState, setIsLoadingState] = useState(false);
   const [isError, setIsError] = useState(false);
 
+  const history = createBrowserHistory();
+
+  const fetchSearchResults = parsedQuery => {
+    fetch(`/trademark/${encodeURI(parsedQuery.searchphrase)}/`)
+    .then((res) => {
+      setResultsCount(0);
+      setPage(0);
+      setTrademarks([]);
+      setIsLoadingState(true);
+      setIsError(false);
+      return res.json();
+    })
+    .then((searchResults) => {
+
+      if (searchResults.trademarks) {
+
+        //If the results are empty, we want this information in state,
+        //so that we can show the user a helpful message.
+        if (typeof searchResults.trademarks === 'string' && searchResults.trademarks === 'noresults') {
+          setAreResultsEmpty(true);
+          setTrademarks([]);
+        }
+
+        //A response with no results yields a string in the trademarks field that says "no results".
+        //Therefore, instead of merely checking for null, it's safe to also check if the value is also an array.
+        if (Array.isArray(searchResults.trademarks)) {
+          setTrademarks(searchResults.trademarks);
+          //Even though the response data contains a "counts" property, the array of trademark data
+          //more likely to be correct, since it is calculated
+          setResultsCount(searchResults.trademarks.length);
+          setAreResultsEmpty(false);
+        }
+        setIsLoadingState(false);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      setIsLoadingState(false);
+      setIsError(true);
+    });
+  };
+
+  useEffect(() => {
+    if (history.location.search) {
+      fetchSearchResults(queryString.parse(history.location.search));
+      setSearchPhrase(queryString.parse(history.location.search).searchphrase);
+    }
+  }, []);
+
   const handleSearchSubmit = event => {
     event.preventDefault();
-    fetch(`/trademark/${encodeURI(searchPhrase)}/`)
-      .then((res) => {
-        setResultsCount(0);
-        setPage(0);
-        setTrademarks([]);
-        setIsLoadingState(true);
-        setIsError(false);
-        return res.json();
-      })
-      .then((searchResults) => {
 
-        if (searchResults.trademarks) {
+    history.push({
+      search: `?searchphrase=${searchPhrase}`
+    });
 
-          //If the results are empty, we want this information in state,
-          //so that we can show the user a helpful message.
-          if (typeof searchResults.trademarks === 'string' && searchResults.trademarks === 'noresults') {
-            setAreResultsEmpty(true);
-            setTrademarks([]);
-          }
-
-          //A response with no results yields a string in the trademarks field that says "no results".
-          //Therefore, instead of merely checking for null, it's safe to also check if the value is also an array.
-          if (Array.isArray(searchResults.trademarks)) {
-            setTrademarks(searchResults.trademarks);
-            //Even though the response data contains a "counts" property, the array of trademark data
-            //more likely to be correct, since it is calculated
-            setResultsCount(searchResults.trademarks.length);
-            setAreResultsEmpty(false);
-          }
-          setIsLoadingState(false);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        setIsLoadingState(false);
-        setIsError(true);
-      });
-  };
+    fetchSearchResults(queryString.parse(history.location.search));
+  }
 
   return (
     <Layout>
@@ -73,7 +94,12 @@ const Home = () => {
                 <CircularProgress />
               </div>
             ) : trademarks.length ? (
-              <ResultsTable trademarks={trademarks}  setPage={setPage} page={page} />
+              <>
+                <ResultsTable trademarks={trademarks}  setPage={setPage} page={page} />
+                <div className="ShareContainer">
+                  <ShareInput history={history} />
+                </div>
+              </>
                                 // Use empty results boolean state and search phrase length to determine
                                 // what placeholder to show the user
               ) : (<Placeholder areResultsEmpty={areResultsEmpty} searchPhrase={searchPhrase} isError={isError} />)
