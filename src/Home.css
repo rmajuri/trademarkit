@@ -10,3 +10,11 @@
   align-items: center;
   justify-content: center;
 }
+
+.ShareContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 auto;
+  width: 80%;
+  margin-top: 10px;
+}

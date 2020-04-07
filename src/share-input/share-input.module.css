@@ -1,0 +1,23 @@
+.ShareComponents {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ShareMessage {
+    display: inline-block;
+    font-family: var(--font);
+}
+
+.Input {
+    margin-right: 10px;
+}
+
+.Icon {
+    margin-right: 7px;
+}
+
+.CopyComponent {
+    cursor: pointer;
+}
+
