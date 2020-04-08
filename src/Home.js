@@ -5,8 +5,8 @@ import Search from './search/search';
 import ResultsTable from './results-table/results-table';
 import Placeholder from './placeholder/placeholder';
 import Layout from './layout/layout';
-import { createBrowserHistory } from 'history';
 import queryString from 'query-string';
+import { createBrowserHistory } from 'history';
 import ShareInput from './share-input/share-input';
 
 const Home = () => {
@@ -18,7 +18,7 @@ const Home = () => {
   const [isLoadingState, setIsLoadingState] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const history = createBrowserHistory();
+  const history = createBrowserHistory({forceRefresh: true});
 
   const fetchSearchResults = parsedQuery => {
     fetch(`/trademark/${encodeURI(parsedQuery.searchphrase)}/`)
@@ -61,6 +61,7 @@ const Home = () => {
   };
 
   useEffect(() => {
+
     if (history.location.search) {
       fetchSearchResults(queryString.parse(history.location.search));
       setSearchPhrase(queryString.parse(history.location.search).searchphrase);

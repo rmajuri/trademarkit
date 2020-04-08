@@ -5,11 +5,14 @@ import Switch from 'react-router-dom/Switch';
 import Home from './Home';
 import './App.css';
 
+window.addEventListener( "popstate", function () {
+    window.location.reload();
+});
 
 const App = () => (
   <NoSsr>
     <Switch>
-      <Route exact path="/" component={Home} />
+      <Route exact path="/" render={() => <Home />} />
     </Switch>
   </NoSsr>
 );
