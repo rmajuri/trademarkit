@@ -20,7 +20,7 @@ const Home = () => {
 
   const history = createBrowserHistory();
 
-  const fetchSearchResults = parsedQuery => {
+  const fetchSearchResults = (parsedQuery, newSearchPhrase) => {
     fetch(`/trademark/${encodeURI(parsedQuery.searchphrase)}/`)
     .then((res) => {
       setResultsCount(0);
@@ -50,7 +50,11 @@ const Home = () => {
           setResultsCount(searchResults.trademarks.length);
           setAreResultsEmpty(false);
         }
+        const storageKey = newSearchPhrase ? newSearchPhrase : searchPhrase;
+        console.log('STORAGE KEY', storageKey);
+        window.localStorage.setItem(storageKey, JSON.stringify(searchResults.trademarks));
         setIsLoadingState(false);
+        console.log(window.localStorage);
       }
     })
     .catch((err) => {
@@ -62,8 +66,10 @@ const Home = () => {
 
   useEffect(() => {
     if (history.location.search) {
-      fetchSearchResults(queryString.parse(history.location.search));
-      setSearchPhrase(queryString.parse(history.location.search).searchphrase);
+      const newSearchPhrase = queryString.parse(history.location.search).searchphrase;
+      setSearchPhrase(newSearchPhrase);
+      console.log("SEARCHPHRASE IN USE EFFECT", newSearchPhrase);
+      fetchSearchResults(queryString.parse(history.location.search), newSearchPhrase);
     }
   }, []);
 
