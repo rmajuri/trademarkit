@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { Context } from './context';
 import { CircularProgress } from '@material-ui/core'
 import './Home.css';
 import Search from './search/search';
@@ -10,6 +11,8 @@ import { createBrowserHistory } from 'history';
 import ShareInput from './share-input/share-input';
 
 const Home = () => {
+  const context = useContext(Context);
+  console.log(context)
   const [trademarks, setTrademarks] = useState([]);
   const [resultsCount, setResultsCount] = useState(0);
   const [searchPhrase, setSearchPhrase] = useState('');
@@ -51,6 +54,8 @@ const Home = () => {
           setAreResultsEmpty(false);
         }
         setIsLoadingState(false);
+        context.dispatch({type: 'pushPath', payload: {[window.location]: searchResults.trademarks}});
+        console.log(context.locationHistory)
       }
     })
     .catch((err) => {
@@ -61,7 +66,6 @@ const Home = () => {
   };
 
   useEffect(() => {
-
     if (history.location.search) {
       fetchSearchResults(queryString.parse(history.location.search));
       setSearchPhrase(queryString.parse(history.location.search).searchphrase);

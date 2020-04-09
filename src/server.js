@@ -4,6 +4,7 @@ import { StaticRouter } from 'react-router-dom';
 import express from 'express';
 import { renderToString } from 'react-dom/server';
 import trademarkAPI from './trademark';
+import { Provider } from './context';
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
@@ -21,7 +22,9 @@ server
     const context = {};
     const markup = renderToString(
       <StaticRouter context={context} location={req.url}>
-        <App />
+        <Provider>
+          <App />
+        </Provider>
       </StaticRouter>
     );
 
