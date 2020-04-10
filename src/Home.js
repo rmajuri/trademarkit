@@ -9,14 +9,33 @@ import { createBrowserHistory } from 'history';
 import queryString from 'query-string';
 import ShareInput from './share-input/share-input';
 
-const Home = () => {
-  const [trademarks, setTrademarks] = useState([]);
-  const [resultsCount, setResultsCount] = useState(0);
-  const [searchPhrase, setSearchPhrase] = useState('');
-  const [areResultsEmpty, setAreResultsEmpty] = useState(false);
-  const [page, setPage] = useState(0);
-  const [isLoadingState, setIsLoadingState] = useState(false);
-  const [isError, setIsError] = useState(false);
+const Home = ({
+  cachedSearchPhrase,
+  trademarks,
+  setTrademarks,
+  searchPhrase,
+  setSearchPhrase,
+  resultsCount,
+  setResultsCount,
+  areResultsEmpty,
+  setAreResultsEmpty,
+  isLoadingState,
+  setIsLoadingState,
+  page,
+  setPage,
+  isError,
+  setIsError
+}) => {
+  console.log('IN HOME', cachedSearchPhrase)
+  console.log(trademarks)
+  console.log(searchPhrase)
+  // const [trademarks, setTrademarks] = useState([]);
+  // const [resultsCount, setResultsCount] = useState(0);
+  // const [searchPhrase, setSearchPhrase] = useState('');
+  // const [areResultsEmpty, setAreResultsEmpty] = useState(false);
+  // const [page, setPage] = useState(0);
+  // const [isLoadingState, setIsLoadingState] = useState(false);
+  // const [isError, setIsError] = useState(false);
 
   const history = createBrowserHistory();
 
@@ -51,10 +70,8 @@ const Home = () => {
           setAreResultsEmpty(false);
         }
         const storageKey = newSearchPhrase ? newSearchPhrase : searchPhrase;
-        console.log('STORAGE KEY', storageKey);
         window.localStorage.setItem(storageKey, JSON.stringify(searchResults.trademarks));
         setIsLoadingState(false);
-        console.log(window.localStorage);
       }
     })
     .catch((err) => {
@@ -64,11 +81,34 @@ const Home = () => {
     });
   };
 
+//   const loadCachedSearchResults = () => {
+//       setResultsCount(0);
+//       setPage(0);
+//       setTrademarks([]);
+//       setIsLoadingState(true);
+//       setIsError(false);
+
+//     if (window.localStorage[cachedSearchPhrase]) {
+//       console.log('RESULT IN LOAD FUNCTION', window.localStorage[cachedSearchPhrase])
+//       const results = JSON.parse(window.localStorage[cachedSearchPhrase])
+//       if (typeof results === 'string' && results === 'noresults') {
+//         setAreResultsEmpty(true);
+//         setTrademarks([]);
+//       }
+
+//       if (Array.isArray(results)) {
+//         setTrademarks(results);
+//         setResultsCount(results.length);
+//         setAreResultsEmpty(false);
+//       }
+//     }
+// };
+
   useEffect(() => {
-    if (history.location.search) {
+    if (history.location.search && !window.localStorage.hasOwnProperty(queryString.parse(window.location.search).searchphrase)) {
       const newSearchPhrase = queryString.parse(history.location.search).searchphrase;
       setSearchPhrase(newSearchPhrase);
-      console.log("SEARCHPHRASE IN USE EFFECT", newSearchPhrase);
+      console.log("YOOOOOOOOOOOOO")
       fetchSearchResults(queryString.parse(history.location.search), newSearchPhrase);
     }
   }, []);
