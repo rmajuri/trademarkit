@@ -9,7 +9,7 @@ const App = () => {
 
   useEffect(() => {
     window.addEventListener('popstate', function () {
-      window.load.reload();
+      window.location.reload();
     });
   })
 

@@ -20,6 +20,7 @@ const Home = () => {
   const history = createBrowserHistory();
 
   const fetchSearchResults = parsedSearchPhrase  => {
+    console.log(parsedSearchPhrase)
     fetch(`/trademark/${encodeURI(parsedSearchPhrase)}/`)
     .then((res) => {
       setResultsCount(0);
@@ -44,11 +45,13 @@ const Home = () => {
         //Therefore, instead of merely checking for null, it's safe to also check if the value is also an array.
         if (Array.isArray(searchResults.trademarks)) {
           setTrademarks(searchResults.trademarks);
+          console.log(trademarks)
           //Even though the response data contains a "counts" property, the array of trademark data
           //more likely to be correct, since it is calculated
           setResultsCount(searchResults.trademarks.length);
           setAreResultsEmpty(false);
         }
+        window.localStorage.setItem(parsedSearchPhrase, JSON.stringify(searchResults.trademarks));
         setIsLoadingState(false);
       }
     })
@@ -66,7 +69,7 @@ const Home = () => {
       search: `?searchphrase=${searchPhrase}`
     });
 
-    fetchSearchResults(queryString.parse(history.location.search).searchPhrase);
+    fetchSearchResults(queryString.parse(history.location.search).searchphrase);
 
   };
 
@@ -99,7 +102,7 @@ const loadCachedSearchResults = cachedSearchPhrase => {
             setSearchPhrase(parsedPhrase);
             fetchSearchResults(parsedPhrase);  
         }
-  });
+  }, []);
 
   return (
     <Layout>
