@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CircularProgress } from '@material-ui/core'
 import './Home.css';
 import Search from './search/search';
 import ResultsTable from './results-table/results-table';
 import Placeholder from './placeholder/placeholder';
 import Layout from './layout/layout';
+import queryString from 'query-string';
 
 const Home = () => {
   const [trademarks, setTrademarks] = useState([]);
@@ -55,6 +56,40 @@ const Home = () => {
         setIsError(true);
       });
   };
+
+    const loadCachedSearchResults = () => {
+      setResultsCount(0);
+      setPage(0);
+      setTrademarks([]);
+
+    if (window.localStorage.hasOwnProperty(queryString.parse(window.location.search).searchphrase)) {
+      console.log('RESULT IN LOAD FUNCTION', window.localStorage.hasOwnProperty(queryString.parse(window.location.search).searchphrase))
+      const results = JSON.parse(window.localStorage.hasOwnProperty(queryString.parse(window.location.search).searchphrase))
+      if (typeof results === 'string' && results === 'noresults') {
+        setAreResultsEmpty(true);
+        setTrademarks([]);
+      }
+
+      if (Array.isArray(results)) {
+        setTrademarks(results);
+        setResultsCount(results.length);
+        setAreResultsEmpty(false);
+      }
+    }
+};
+
+  useEffect(() => {
+    window.addEventListener('popstate', function () {
+      console.log('CURRENT SEARCH PHRASE', queryString.parse(window.location.search).searchphrase)
+
+        if (window.localStorage.hasOwnProperty(queryString.parse(window.location.search).searchphrase)) {
+          console.log('CACHED RESULTS', window.localStorage[queryString.parse(window.location.search).searchphrase]);
+          const parsedPhrase = queryString.parse(window.location.search).searchphrase;
+          setSearchPhrase(parsedPhrase);
+          loadCachedSearchResults();
+        }
+    });
+  });
 
   return (
     <Layout>
