@@ -6,9 +6,8 @@ import Switch from 'react-router-dom/Switch';
 import Home from './Home';
 import './App.css';
 
-let popEventListenerAdded = false;
-
 const App = () => {
+  const [popEventListenerAdded, setPopEventListenerAdded] = useState(false);
   const [cachedSearchPhrase, setCachedSearchPhrase] = useState('');
   const [trademarks, setTrademarks] = useState([]);
   const [resultsCount, setResultsCount] = useState(0);
@@ -20,22 +19,20 @@ const App = () => {
 
   const loadCachedSearchResults = () => {
 
-  if (window.localStorage[cachedSearchPhrase]) {
-    console.log('RESULT IN LOAD FUNCTION', window.localStorage[cachedSearchPhrase])
-    const results = JSON.parse(window.localStorage[cachedSearchPhrase])
-    if (typeof results === 'string' && results === 'noresults') {
-      setAreResultsEmpty(true);
-      console.log("YOUR RESULTS IS A STRING")
-      setTrademarks([]);
-    }
+      console.log('RESULT IN LOAD FUNCTION', window.localStorage[cachedSearchPhrase])
+      const results = JSON.parse(window.localStorage[cachedSearchPhrase])
+      if (typeof results === 'string' && results === 'noresults') {
+        setAreResultsEmpty(true);
+        console.log("YOUR RESULTS IS A STRING")
+        setTrademarks([]);
+      }
 
-    if (Array.isArray(results)) {
-      setTrademarks(results);
-      console.log("YOUR RESULTS IS NOT A STRING:", results)
-      setResultsCount(results.length);
-      setAreResultsEmpty(false);
-    }
-  }
+      if (Array.isArray(results)) {
+        setTrademarks(results);
+        console.log("YOUR RESULTS IS NOT A STRING:", results)
+        setResultsCount(results.length);
+        setAreResultsEmpty(false);
+      }
 };
 
   useEffect(() => {
@@ -49,7 +46,8 @@ const App = () => {
           setCachedSearchPhrase(parsedPhrase);
           setSearchPhrase(parsedPhrase);
           loadCachedSearchResults();
-          popEventListenerAdded = true;
+          setPopEventListenerAdded(true);
+
         }
     });
   })

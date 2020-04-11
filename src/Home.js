@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { CircularProgress } from '@material-ui/core'
 import './Home.css';
 import Search from './search/search';
@@ -10,7 +10,6 @@ import queryString from 'query-string';
 import ShareInput from './share-input/share-input';
 
 const Home = ({
-  cachedSearchPhrase,
   trademarks,
   setTrademarks,
   searchPhrase,
@@ -26,9 +25,7 @@ const Home = ({
   isError,
   setIsError
 }) => {
-  console.log('IN HOME', cachedSearchPhrase)
-  console.log(trademarks)
-  console.log(searchPhrase)
+  console.log("NEW TRADEMARKS", trademarks)
   // const [trademarks, setTrademarks] = useState([]);
   // const [resultsCount, setResultsCount] = useState(0);
   // const [searchPhrase, setSearchPhrase] = useState('');
@@ -39,7 +36,7 @@ const Home = ({
 
   const history = createBrowserHistory();
 
-  const fetchSearchResults = (parsedQuery, newSearchPhrase) => {
+  const fetchSearchResults = (parsedQuery) => {
     fetch(`/trademark/${encodeURI(parsedQuery.searchphrase)}/`)
     .then((res) => {
       setResultsCount(0);
@@ -69,8 +66,8 @@ const Home = ({
           setResultsCount(searchResults.trademarks.length);
           setAreResultsEmpty(false);
         }
-        const storageKey = newSearchPhrase ? newSearchPhrase : searchPhrase;
-        window.localStorage.setItem(storageKey, JSON.stringify(searchResults.trademarks));
+
+        window.localStorage.setItem(searchPhrase, JSON.stringify(searchResults.trademarks));
         setIsLoadingState(false);
       }
     })
@@ -104,14 +101,13 @@ const Home = ({
 //     }
 // };
 
-  useEffect(() => {
-    if (history.location.search && !window.localStorage.hasOwnProperty(queryString.parse(window.location.search).searchphrase)) {
-      const newSearchPhrase = queryString.parse(history.location.search).searchphrase;
-      setSearchPhrase(newSearchPhrase);
-      console.log("YOOOOOOOOOOOOO")
-      fetchSearchResults(queryString.parse(history.location.search), newSearchPhrase);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (history.location.search && !window.localStorage.hasOwnProperty(queryString.parse(window.location.search).searchphrase)) {
+  //     const newSearchPhrase = queryString.parse(history.location.search).searchphrase;
+      
+  //     console.log("YOOOOOOOOOOOOO");
+  //   }
+  // }, []);
 
   const handleSearchSubmit = event => {
     event.preventDefault();
