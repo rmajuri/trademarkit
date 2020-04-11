@@ -39,11 +39,11 @@ const App = () => {
 };
 
   useEffect(() => {
-    window.addEventListener("popstate", function () {
+    window.addEventListener('popstate', function () {
       setCachedSearchPhrase('');
       console.log('CURRENT SEARCH PHRASE', queryString.parse(window.location.search).searchphrase)
 
-        if (window.localStorage.hasOwnProperty(queryString.parse(window.location.search).searchphrase)) {
+        if (!popEventListenerAdded && window.localStorage.hasOwnProperty(queryString.parse(window.location.search).searchphrase)) {
           console.log('CACHED RESULTS', window.localStorage[queryString.parse(window.location.search).searchphrase]);
           const parsedPhrase = queryString.parse(window.location.search).searchphrase;
           setCachedSearchPhrase(parsedPhrase);
