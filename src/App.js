@@ -19,8 +19,9 @@ const App = () => {
 
   const loadCachedSearchResults = () => {
 
+      console.log(cachedSearchPhrase)
       console.log('RESULT IN LOAD FUNCTION', window.localStorage[cachedSearchPhrase])
-      const results = JSON.parse(window.localStorage[cachedSearchPhrase])
+      const results = window.localStorage[cachedSearchPhrase]
       if (typeof results === 'string' && results === 'noresults') {
         setAreResultsEmpty(true);
         console.log("YOUR RESULTS IS A STRING")
@@ -50,7 +51,7 @@ const App = () => {
 
         }
     });
-  })
+  }, [])
 
   return (
     <NoSsr>
