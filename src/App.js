@@ -6,17 +6,14 @@ import Switch from 'react-router-dom/Switch';
 import Home from './Home';
 import './App.css';
 
-// window.addEventListener( "popstate", function () {
-//     console.log(window.location);
-// });
-
 class App extends React.Component {
 
-  // componentDidMount() {
-  //   window.addEventListener( "popstate", function () {
-  //     window.re
-  //   });
-  // }
+  componentDidMount() {
+    window.addEventListener("popstate", function () {
+      console.log("CAT")
+      window.location.reload();
+    });
+  }
 
   render() {
     return (

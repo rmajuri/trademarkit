@@ -11,8 +11,7 @@ import { createBrowserHistory } from 'history';
 import ShareInput from './share-input/share-input';
 
 const Home = () => {
-  const context = useContext(Context);
-  console.log(context)
+  
   const [trademarks, setTrademarks] = useState([]);
   const [resultsCount, setResultsCount] = useState(0);
   const [searchPhrase, setSearchPhrase] = useState('');
@@ -66,6 +65,20 @@ const Home = () => {
   };
 
   useEffect(() => {
+    window.addEventListener('popstate', function () {
+      setCachedSearchPhrase('');
+      console.log('CURRENT SEARCH PHRASE', queryString.parse(window.location.search).searchphrase)
+
+        if (!popEventListenerAdded && window.localStorage.hasOwnProperty(queryString.parse(window.location.search).searchphrase)) {
+          console.log('CACHED RESULTS', window.localStorage[queryString.parse(window.location.search).searchphrase]);
+          const parsedPhrase = queryString.parse(window.location.search).searchphrase;
+          setCachedSearchPhrase(parsedPhrase);
+          setSearchPhrase(parsedPhrase);
+          loadCachedSearchResults();
+          popEventListenerAdded = true;
+        }
+    });
+
     if (history.location.search) {
       fetchSearchResults(queryString.parse(history.location.search));
       setSearchPhrase(queryString.parse(history.location.search).searchphrase);
