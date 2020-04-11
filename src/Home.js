@@ -97,10 +97,10 @@ const loadCachedSearchResults = cachedSearchPhrase => {
           const parsedPhrase = queryString.parse(window.location.search).searchphrase;
           setSearchPhrase(parsedPhrase);
           loadCachedSearchResults(parsedPhrase);
-        } else if (history.location.search) {
+        } else if (window.location.search) {
             const parsedPhrase = queryString.parse(window.location.search).searchphrase;
             setSearchPhrase(parsedPhrase);
-            fetchSearchResults(parsedPhrase);  
+            fetchSearchResults(parsedPhrase);
         }
   }, []);
 
