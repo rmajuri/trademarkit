@@ -6,6 +6,7 @@ import ResultsTable from './results-table/results-table';
 import Placeholder from './placeholder/placeholder';
 import Layout from './layout/layout';
 import queryString from 'query-string';
+import { createBrowserHistory } from 'history';
 
 const Home = () => {
   const [trademarks, setTrademarks] = useState([]);
@@ -16,79 +17,88 @@ const Home = () => {
   const [isLoadingState, setIsLoadingState] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const handleSearchSubmit = event => {
-    event.preventDefault();
-    fetch(`/trademark/${encodeURI(searchPhrase)}/`)
-      .then((res) => {
-        setResultsCount(0);
-        setPage(0);
-        setTrademarks([]);
-        setIsLoadingState(true);
-        setIsError(false);
-        return res.json();
-      })
-      .then((searchResults) => {
+  const history = createBrowserHistory();
 
-        if (searchResults.trademarks) {
-
-          //If the results are empty, we want this information in state,
-          //so that we can show the user a helpful message.
-          if (typeof searchResults.trademarks === 'string' && searchResults.trademarks === 'noresults') {
-            setAreResultsEmpty(true);
-            setTrademarks([]);
-          }
-
-          //A response with no results yields a string in the trademarks field that says "no results".
-          //Therefore, instead of merely checking for null, it's safe to also check if the value is also an array.
-          if (Array.isArray(searchResults.trademarks)) {
-            setTrademarks(searchResults.trademarks);
-            //Even though the response data contains a "counts" property, the array of trademark data
-            //more likely to be correct, since it is calculated
-            setResultsCount(searchResults.trademarks.length);
-            setAreResultsEmpty(false);
-          }
-          setIsLoadingState(false);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        setIsLoadingState(false);
-        setIsError(true);
-      });
-  };
-
-    const loadCachedSearchResults = () => {
+  const fetchSearchResults = parsedSearchPhrase  => {
+    fetch(`/trademark/${encodeURI(parsedSearchPhrase)}/`)
+    .then((res) => {
       setResultsCount(0);
       setPage(0);
       setTrademarks([]);
-
-    if (window.localStorage.hasOwnProperty(queryString.parse(window.location.search).searchphrase)) {
-      console.log('RESULT IN LOAD FUNCTION', window.localStorage.hasOwnProperty(queryString.parse(window.location.search).searchphrase))
-      const results = JSON.parse(window.localStorage.hasOwnProperty(queryString.parse(window.location.search).searchphrase))
-      if (typeof results === 'string' && results === 'noresults') {
-        setAreResultsEmpty(true);
-        setTrademarks([]);
+      setIsLoadingState(true);
+      setIsError(false);
+      return res.json();
+    })
+    .then((searchResults) => {
+  
+      if (searchResults.trademarks) {
+  
+        //If the results are empty, we want this information in state,
+        //so that we can show the user a helpful message.
+        if (typeof searchResults.trademarks === 'string' && searchResults.trademarks === 'noresults') {
+          setAreResultsEmpty(true);
+          setTrademarks([]);
+        }
+  
+        //A response with no results yields a string in the trademarks field that says "no results".
+        //Therefore, instead of merely checking for null, it's safe to also check if the value is also an array.
+        if (Array.isArray(searchResults.trademarks)) {
+          setTrademarks(searchResults.trademarks);
+          //Even though the response data contains a "counts" property, the array of trademark data
+          //more likely to be correct, since it is calculated
+          setResultsCount(searchResults.trademarks.length);
+          setAreResultsEmpty(false);
+        }
+        setIsLoadingState(false);
       }
+    })
+    .catch((err) => {
+      console.error(err);
+      setIsLoadingState(false);
+      setIsError(true);
+    });
+  }
 
-      if (Array.isArray(results)) {
-        setTrademarks(results);
-        setResultsCount(results.length);
-        setAreResultsEmpty(false);
-      }
-    }
+  const handleSearchSubmit = event => {
+    event.preventDefault();
+
+    history.push({
+      search: `?searchphrase=${searchPhrase}`
+    });
+
+    fetchSearchResults(queryString.parse(history.location.search).searchPhrase);
+
+  };
+
+const loadCachedSearchResults = cachedSearchPhrase => {
+
+  console.log('RESULT IN LOAD FUNCTION', window.localStorage[cachedSearchPhrase])
+  const results = JSON.parse(window.localStorage[cachedSearchPhrase])
+  if (typeof results === 'string' && results === 'noresults') {
+    setAreResultsEmpty(true);
+    console.log("YOUR RESULTS IS A STRING")
+    setTrademarks([]);
+  }
+
+  if (Array.isArray(results)) {
+    setTrademarks(results);
+    console.log("YOUR RESULTS IS NOT A STRING:", results)
+    setResultsCount(results.length);
+    setAreResultsEmpty(false);
+  }
 };
 
   useEffect(() => {
-    window.addEventListener('popstate', function () {
-      console.log('CURRENT SEARCH PHRASE', queryString.parse(window.location.search).searchphrase)
-
         if (window.localStorage.hasOwnProperty(queryString.parse(window.location.search).searchphrase)) {
           console.log('CACHED RESULTS', window.localStorage[queryString.parse(window.location.search).searchphrase]);
           const parsedPhrase = queryString.parse(window.location.search).searchphrase;
           setSearchPhrase(parsedPhrase);
-          loadCachedSearchResults();
+          loadCachedSearchResults(parsedPhrase);
+        } else if (history.location.search) {
+            const parsedPhrase = queryString.parse(window.location.search).searchphrase;
+            setSearchPhrase(parsedPhrase);
+            fetchSearchResults(parsedPhrase);  
         }
-    });
   });
 
   return (

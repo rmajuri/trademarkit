@@ -8,15 +8,17 @@ import './App.css';
 const App = () => {
 
   useEffect(() => {
-    window.addEventListener('popstate', function() {
+    window.addEventListener('popstate', function () {
       window.load.reload();
     });
-  });
+  })
 
   return (
     <NoSsr>
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route
+        exact
+        path="/" render={() => <Home />} />
       </Switch>
     </NoSsr>
   );
