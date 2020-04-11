@@ -12,6 +12,12 @@ import './App.css';
 
 class App extends React.Component {
 
+  // componentDidMount() {
+  //   window.addEventListener( "popstate", function () {
+  //     window.re
+  //   });
+  // }
+
   render() {
     return (
       <NoSsr>
