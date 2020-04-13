@@ -20,7 +20,6 @@ const Home = () => {
   const history = createBrowserHistory();
 
   const fetchSearchResults = parsedSearchPhrase  => {
-    console.log(parsedSearchPhrase)
     fetch(`/trademark/${encodeURI(parsedSearchPhrase)}/`)
     .then((res) => {
       setResultsCount(0);
@@ -45,13 +44,12 @@ const Home = () => {
         //Therefore, instead of merely checking for null, it's safe to also check if the value is also an array.
         if (Array.isArray(searchResults.trademarks)) {
           setTrademarks(searchResults.trademarks);
-          console.log(trademarks)
           //Even though the response data contains a "counts" property, the array of trademark data
           //more likely to be correct, since it is calculated
           setResultsCount(searchResults.trademarks.length);
           setAreResultsEmpty(false);
         }
-        window.localStorage.setItem(parsedSearchPhrase, JSON.stringify(searchResults.trademarks));
+        window.sessionStorage.setItem(parsedSearchPhrase, JSON.stringify(searchResults.trademarks));
         setIsLoadingState(false);
       }
     })
@@ -74,26 +72,21 @@ const Home = () => {
   };
 
 const loadCachedSearchResults = cachedSearchPhrase => {
-
-  console.log('RESULT IN LOAD FUNCTION', window.localStorage[cachedSearchPhrase])
-  const results = JSON.parse(window.localStorage[cachedSearchPhrase])
+  const results = JSON.parse(window.sessionStorage[cachedSearchPhrase])
   if (typeof results === 'string' && results === 'noresults') {
     setAreResultsEmpty(true);
-    console.log("YOUR RESULTS IS A STRING")
     setTrademarks([]);
   }
 
   if (Array.isArray(results)) {
     setTrademarks(results);
-    console.log("YOUR RESULTS IS NOT A STRING:", results)
     setResultsCount(results.length);
     setAreResultsEmpty(false);
   }
 };
 
   useEffect(() => {
-        if (window.localStorage.hasOwnProperty(queryString.parse(window.location.search).searchphrase)) {
-          console.log('CACHED RESULTS', window.localStorage[queryString.parse(window.location.search).searchphrase]);
+        if (window.sessionStorage.hasOwnProperty(queryString.parse(window.location.search).searchphrase)) {
           const parsedPhrase = queryString.parse(window.location.search).searchphrase;
           setSearchPhrase(parsedPhrase);
           loadCachedSearchResults(parsedPhrase);
