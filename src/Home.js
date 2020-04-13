@@ -20,8 +20,8 @@ const Home = () => {
 
   const history = createBrowserHistory();
 
-  const fetchSearchResults = parsedQuery => {
-    fetch(`/trademark/${encodeURI(parsedQuery.searchphrase)}/`)
+  const fetchSearchResults = parsedSearchPhrase  => {
+    fetch(`/trademark/${encodeURI(parsedSearchPhrase)}/`)
     .then((res) => {
       setResultsCount(0);
       setPage(0);
@@ -31,16 +31,16 @@ const Home = () => {
       return res.json();
     })
     .then((searchResults) => {
-
+  
       if (searchResults.trademarks) {
-
+  
         //If the results are empty, we want this information in state,
         //so that we can show the user a helpful message.
         if (typeof searchResults.trademarks === 'string' && searchResults.trademarks === 'noresults') {
           setAreResultsEmpty(true);
           setTrademarks([]);
         }
-
+  
         //A response with no results yields a string in the trademarks field that says "no results".
         //Therefore, instead of merely checking for null, it's safe to also check if the value is also an array.
         if (Array.isArray(searchResults.trademarks)) {
@@ -50,6 +50,7 @@ const Home = () => {
           setResultsCount(searchResults.trademarks.length);
           setAreResultsEmpty(false);
         }
+        window.sessionStorage.setItem(parsedSearchPhrase, JSON.stringify(searchResults.trademarks));
         setIsLoadingState(false);
       }
     })
@@ -58,14 +59,7 @@ const Home = () => {
       setIsLoadingState(false);
       setIsError(true);
     });
-  };
-
-  useEffect(() => {
-    if (history.location.search) {
-      fetchSearchResults(queryString.parse(history.location.search));
-      setSearchPhrase(queryString.parse(history.location.search).searchphrase);
-    }
-  }, []);
+  }
 
   const handleSearchSubmit = event => {
     event.preventDefault();
@@ -74,8 +68,46 @@ const Home = () => {
       search: `?searchphrase=${searchPhrase}`
     });
 
-    fetchSearchResults(queryString.parse(history.location.search));
+    fetchSearchResults(queryString.parse(history.location.search).searchphrase);
+
+  };
+
+const loadCachedSearchResults = cachedSearchPhrase => {
+  const results = JSON.parse(window.sessionStorage[cachedSearchPhrase])
+  if (typeof results === 'string' && results === 'noresults') {
+    setAreResultsEmpty(true);
+    setTrademarks([]);
   }
+
+  if (Array.isArray(results)) {
+    setTrademarks(results);
+    setResultsCount(results.length);
+    setAreResultsEmpty(false);
+  }
+};
+
+  useEffect(() => {
+    window.addEventListener('popstate', function () {
+      if (window.location.search) {
+        if (window.sessionStorage.hasOwnProperty(queryString.parse(window.location.search).searchphrase)) {
+          const parsedPhrase = queryString.parse(window.location.search).searchphrase;
+          setSearchPhrase(parsedPhrase);
+          loadCachedSearchResults(parsedPhrase);
+        }
+      } else {
+        setTrademarks([]);
+        setSearchPhrase('');
+        setResultsCount(0);
+        setAreResultsEmpty(false);
+      }
+    });
+
+    if (window.location.search) {
+        const parsedPhrase = queryString.parse(window.location.search).searchphrase;
+        setSearchPhrase(parsedPhrase);
+        fetchSearchResults(parsedPhrase);
+    }
+  }, []);
 
   return (
     <Layout>

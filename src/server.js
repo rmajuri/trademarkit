@@ -35,21 +35,21 @@ server
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta charset="utf-8" />
         <title>trademarkit</title>
-        <meta property="og:title" content="trademarkit">
-        <meta property="og:description" content="Search for name idea to find out if they're trademarked.">
+        <meta property="og:title" content="trademarkit™">
+        <meta property="og:description" content="Search for name ideas to find out if they're trademarked.">
         <meta property="og:image" content="./tm.png">
         <meta property="og:image:width" content="500" />
         <meta property="og:image:height" content="500" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         ${
-          assets.client.css
-            ? `<link rel="stylesheet" href="${assets.client.css}">`
-            : ''
+        assets.client.css
+          ? `<link rel="stylesheet" href="${assets.client.css}">`
+          : ''
         }
         ${
-          process.env.NODE_ENV === 'production'
-            ? `<script src="${assets.client.js}" defer></script>`
-            : `<script src="${assets.client.js}" defer crossorigin></script>`
+        process.env.NODE_ENV === 'production'
+          ? `<script src="${assets.client.js}" defer></script>`
+          : `<script src="${assets.client.js}" defer crossorigin></script>`
         }
     </head>
     <body>
