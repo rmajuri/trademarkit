@@ -5,8 +5,9 @@ import Search from './search/search';
 import ResultsTable from './results-table/results-table';
 import Placeholder from './placeholder/placeholder';
 import Layout from './layout/layout';
-import queryString from 'query-string';
 import { createBrowserHistory } from 'history';
+import queryString from 'query-string';
+import ShareInput from './share-input/share-input';
 
 const Home = () => {
   const [trademarks, setTrademarks] = useState([]);
@@ -114,7 +115,12 @@ const loadCachedSearchResults = cachedSearchPhrase => {
                 <CircularProgress />
               </div>
             ) : trademarks.length ? (
-              <ResultsTable trademarks={trademarks}  setPage={setPage} page={page} />
+              <>
+                <ResultsTable trademarks={trademarks}  setPage={setPage} page={page} />
+                <div className="ShareContainer">
+                  <ShareInput history={history} />
+                </div>
+              </>
                                 // Use empty results boolean state and search phrase length to determine
                                 // what placeholder to show the user
               ) : (<Placeholder areResultsEmpty={areResultsEmpty} searchPhrase={searchPhrase} isError={isError} />)
