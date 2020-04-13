@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # trademarkit&#8482;
 
 ## How to run this project
@@ -38,6 +37,3 @@ I also chose to ues the project starter named [Razzle](https://github.com/jaredp
 [Material-UI](https://material-ui.com/) is a library of styled React components.
 
 Material-UI allows for fast development while providing nice aesthetics. One thing I'd like to work on next is adding custom styling to the components.
-=======
-trademarkit™
->>>>>>> deploy
