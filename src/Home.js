@@ -86,11 +86,15 @@ const loadCachedSearchResults = cachedSearchPhrase => {
 };
 
   useEffect(() => {
-        if (window.sessionStorage.hasOwnProperty(queryString.parse(window.location.search).searchphrase)) {
-          const parsedPhrase = queryString.parse(window.location.search).searchphrase;
-          setSearchPhrase(parsedPhrase);
-          loadCachedSearchResults(parsedPhrase);
-        } else if (window.location.search) {
+        window.addEventListener('popstate', function () {
+          if (window.sessionStorage.hasOwnProperty(queryString.parse(window.location.search).searchphrase)) {
+            const parsedPhrase = queryString.parse(window.location.search).searchphrase;
+            setSearchPhrase(parsedPhrase);
+            loadCachedSearchResults(parsedPhrase);
+          }
+        });
+
+        if (window.location.search) {
             const parsedPhrase = queryString.parse(window.location.search).searchphrase;
             setSearchPhrase(parsedPhrase);
             fetchSearchResults(parsedPhrase);

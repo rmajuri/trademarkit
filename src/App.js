@@ -7,11 +7,11 @@ import './App.css';
 
 const App = () => {
 
-  useEffect(() => {
-    window.addEventListener('popstate', function () {
-      window.location.reload();
-    });
-  })
+  // useEffect(() => {
+  //   window.addEventListener('popstate', function () {
+  //     window.location.reload();
+  //   });
+  // })
 
   return (
     <NoSsr>
