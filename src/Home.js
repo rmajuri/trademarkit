@@ -87,15 +87,26 @@ const loadCachedSearchResults = cachedSearchPhrase => {
 };
 
   useEffect(() => {
+    window.addEventListener('popstate', function () {
+      if (window.location.search) {
         if (window.sessionStorage.hasOwnProperty(queryString.parse(window.location.search).searchphrase)) {
           const parsedPhrase = queryString.parse(window.location.search).searchphrase;
           setSearchPhrase(parsedPhrase);
           loadCachedSearchResults(parsedPhrase);
-        } else if (window.location.search) {
-            const parsedPhrase = queryString.parse(window.location.search).searchphrase;
-            setSearchPhrase(parsedPhrase);
-            fetchSearchResults(parsedPhrase);
         }
+      } else {
+        setTrademarks([]);
+        setSearchPhrase('');
+        setResultsCount(0);
+        setAreResultsEmpty(false);
+      }
+    });
+
+    if (window.location.search) {
+        const parsedPhrase = queryString.parse(window.location.search).searchphrase;
+        setSearchPhrase(parsedPhrase);
+        fetchSearchResults(parsedPhrase);
+    }
   }, []);
 
   return (
